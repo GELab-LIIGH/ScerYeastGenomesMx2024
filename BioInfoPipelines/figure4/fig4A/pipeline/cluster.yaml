@@ -1,0 +1,16 @@
+__default__:
+  M: 'iesedeno@gmail.com'
+  N: 'rule_{rule}.{wildcards}'
+  l: 'vf=4G'
+  q: 'all.q@compute-00-11.cm'
+  pe: 'openmp 4'
+  mem: '16G'
+  m: 'a'
+  r: 'n'
+  e: 'st/log-{rule}.{wildcards}.err'
+  o: 'st/log-{rule}.{wildcards}.out'
+  S: '/bin/bash'
+
+combine:
+  pe: 'openmp 8'
+  mem: '64G'

@@ -1,0 +1,4 @@
+# Pipeline parameters
+
+ref_name: "CONC_Mez1_v1_allChr.fasta"
+sace_gff: "SACE_S288C_v1_allChr.gff"

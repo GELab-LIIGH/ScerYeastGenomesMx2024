@@ -1,0 +1,218 @@
+ID,Lib_Protocol,SRA,col0,ID_fasta,GenesSAPA_onlySACE,PhyloGroup_SACE469,Region_Pre,Region_New,YMX_NumID,Subgroup_New,Subgroup_Pre,Figura2
+DK001c27,PE,,0,DK001c27,179,MMMG,Southcentral,South central,YMX004184,MMMG_South central,MMMG_Southcentral,1
+DK003c56,PE,,1,DK003c56,141,MMMG,Center,Central highlands,YMX004326,MMMG_Central highlands,MMMG_Center,1
+DK016c5,PE,,2,DK016c5,139,MMMG,Balsas_basin,Balsas basin,YMX004225,MMMG_Balsas basin,MMMG_Balsas_basin,1
+DK017c4,PE,,3,DK017c4,157,MMMG,Balsas_basin,Balsas basin,YMX004231,MMMG_Balsas basin,MMMG_Balsas_basin,1
+DK018c4,PE,,4,DK018c4,139,MMMG,Balsas_basin,Balsas basin,YMX004244,MMMG_Balsas basin,MMMG_Balsas_basin,1
+DK019c1,PE,,5,DK019c1,130,MMMG,Balsas_basin,Balsas basin,YMX004226,MMMG_Balsas basin,MMMG_Balsas_basin,1
+DS002c10,PE,,6,DS002c10,65,Tequila,Far_northwest,Northwest,YMX004542,Tequila_Northwest,Tequila_Far_northwest,1
+DS002c4,PE,,7,DS002c4,142,MMMG,Far_northwest,Northwest,YMX004525,MMMG_Northwest,MMMG_Far_northwest,1
+DS002c5,PE,,8,DS002c5,144,MMMG,Far_northwest,Northwest,YMX004528,MMMG_Northwest,MMMG_Far_northwest,1
+XA017c1,PE,,10,XA017c1,135,MMMG,Balsas_basin,Balsas basin,YMX003697,MMMG_Balsas basin,MMMG_Balsas_basin,1
+XA023c1,PE,,11,XA023c1,139,MMMG,Balsas_basin,Balsas basin,YMX003553,MMMG_Balsas basin,MMMG_Balsas_basin,1
+XA030c1,PE,,12,XA030c1,133,MMMG,Balsas_basin,Balsas basin,YMX003625,MMMG_Balsas basin,MMMG_Balsas_basin,1
+XA057c4,PE,,15,XA057c4,167,MMMG,Southcentral,South central,YMX001684,MMMG_South central,MMMG_Southcentral,1
+XA070c1,PE,,16,XA070c1,145,MMMG,Southcentral,South central,YMX000673,MMMG_South central,MMMG_Southcentral,1
+XA072c4,PE,,17,XA072c4,140,MMMG,Southcentral,South central,YMX001756,MMMG_South central,MMMG_Southcentral,1
+XA074c2,PE,,18,XA074c2,156,MMMG,Southcentral,South central,YMX001922,MMMG_South central,MMMG_Southcentral,1
+XA081c6,PE,,19,XA081c6,140,MMMG,Center,Central highlands,YMX001566,MMMG_Central highlands,MMMG_Center,1
+XA083c6,PE,,21,XA083c6,168,MMMG,Center,Central highlands,YMX002190,MMMG_Central highlands,MMMG_Center,1
+XA097c4,PE,,23,XA097c4,160,MMMG,Center,Central highlands,YMX002116,MMMG_Central highlands,MMMG_Center,1
+XA098c2,PE,,24,XA098c2,156,MMMG,Center,Central highlands,YMX002090,MMMG_Central highlands,MMMG_Center,1
+XA121c18,PE,,28,XA121c18,184,Tamaulipas,Northeast,Northeast,YMX003402,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+XA121c20,PE,,29,XA121c20,139,Tamaulipas,Northeast,Northeast,YMX003404,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+XA121c6,PE,,30,XA121c6,172,Tamaulipas,Northeast,Northeast,YMX003390,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+XA124c1,PE,,31,XA124c1,29,NortAmOak,Northeast,Northeast,YMX003337,NortAmOak_Northeast,NortAmOak_Northeast,1
+XA125c5,PE,,32,XA125c5,74,NortAmOak,Northeast,Northeast,YMX001901,NortAmOak_Northeast,NortAmOak_Northeast,1
+XA126c1,PE,,33,XA126c1,40,NortAmOak,Northeast,Northeast,YMX001945,NortAmOak_Northeast,NortAmOak_Northeast,1
+XA126c5,PE,,34,XA126c5,34,NortAmOak,Northeast,Northeast,YMX001949,NortAmOak_Northeast,NortAmOak_Northeast,1
+XA126c7,PE,,35,XA126c7,165,Tamaulipas,Northeast,Northeast,YMX001951,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+XA131c18,PE,,38,XA131c18,131,MMMG,Southcentral,South central,YMX002466,MMMG_South central,MMMG_Southcentral,1
+XA132c2,PE,,43,XA132c2,152,MMMG,Southcentral,South central,YMX002642,MMMG_South central,MMMG_Southcentral,1
+XA133c5,PE,,44,XA133c5,134,MMMG,Southcentral,South central,YMX002573,MMMG_South central,MMMG_Southcentral,1
+XA134c1,PE,,45,XA134c1,1,MMMG,Southcentral,South central,YMX002401,MMMG_South central,MMMG_Southcentral,1
+XA142c1,PE,,46,XA142c1,141,MMMG,Southcentral,South central,YMX003889,MMMG_South central,MMMG_Southcentral,1
+XA143c7,PE,,47,XA143c7,160,MMMG,Southcentral,South central,YMX002479,MMMG_South central,MMMG_Southcentral,1
+XA144c3,PE,,48,XA144c3,161,MMMG,Southcentral,South central,YMX002547,MMMG_South central,MMMG_Southcentral,1
+XA145c3,PE,,49,XA145c3,145,MMMG,Southcentral,South central,YMX002427,MMMG_South central,MMMG_Southcentral,1
+XA146c1,PE,,50,XA146c1,128,MMMG,Southcentral,South central,YMX002353,MMMG_South central,MMMG_Southcentral,1
+XA154c1,PE,,54,XA154c1,141,MMMG,West,West II,YMX003529,MMMG_West II,MMMG_West,1
+XA186c3,PE,,56,XA186c3,157,MMMG,Northwest,West I,YMX003051,MMMG_West I,MMMG_Northwest,1
+XA189c1,PE,,58,XA189c1,151,MMMG,Northwest,West I,YMX003433,MMMG_West I,MMMG_Northwest,1
+XA190c1,PE,,59,XA190c1,1,MMMG,Northwest,West I,YMX002833,MMMG_West I,MMMG_Northwest,1
+XA191c2,PE,,60,XA191c2,155,MMMG,Northwest,West I,YMX003938,MMMG_West I,MMMG_Northwest,1
+XA196c1,PE,,61,XA196c1,139,MMMG,Northwest,West I,YMX002857,MMMG_West I,MMMG_Northwest,1
+XA197c1,PE,,62,XA197c1,150,MMMG,Northwest,West I,YMX002809,MMMG_West I,MMMG_Northwest,1
+XA200c2,PE,,63,XA200c2,145,MMMG,Northwest,West I,YMX003002,MMMG_West I,MMMG_Northwest,1
+XA211c1,PE,,65,XA211c1,160,MMMG,West,West II,YMX004033,MMMG_West II,MMMG_West,1
+XA251c2,PE,,66,XA251c2,144,MMMG,Southcentral,South central,YMX000818,MMMG_South central,MMMG_Southcentral,1
+XA252c3,PE,,67,XA252c3,149,MMMG,Southcentral,South central,YMX001011,MMMG_South central,MMMG_Southcentral,1
+XA254c23,PE,,68,XA254c23,135,Tequila,Balsas_basin,Balsas basin,YMX000743,Tequila_Balsas basin,Tequila_Balsas_basin,1
+XA255c1,PE,,69,XA255c1,136,MMMG,Southcentral,South central,YMX000841,MMMG_South central,MMMG_Southcentral,1
+XA261c23,PE,,71,XA261c23,127,Tequila,Southcentral,South central,YMX000935,Tequila_South central,Tequila_Southcentral,1
+XB001c4,PE,,72,XB001c4,141,Tequila,Southcentral,South central,YMX000988,Tequila_South central,Tequila_Southcentral,1
+XB011c1,PE,,74,XB011c1,132,MMMG,Balsas_basin,Balsas basin,YMX002041,MMMG_Balsas basin,MMMG_Balsas_basin,1
+XB041c1,PE,,75,XB041c1,176,MMMG,Southcentral,South central,YMX000865,MMMG_South central,MMMG_Southcentral,1
+XB044c4,PE,,76,XB044c4,153,MMMG,Southcentral,South central,YMX001132,MMMG_South central,MMMG_Southcentral,1
+XB047c2,PE,,78,XB047c2,149,MMMG,Southcentral,South central,YMX000626,MMMG_South central,MMMG_Southcentral,1
+XB050c1,PE,,80,XB050c1,166,MMMG,Southcentral,South central,YMX001849,MMMG_South central,MMMG_Southcentral,1
+XB052c1,PE,,82,XB052c1,116,MMMG,Southcentral,South central,YMX001393,MMMG_South central,MMMG_Southcentral,1
+XB054c5,PE,,84,XB054c5,155,MMMG,Southcentral,South central,YMX001733,MMMG_South central,MMMG_Southcentral,1
+XB056c1,PE,,85,XB056c1,150,MMMG,Southcentral,South central,YMX001225,MMMG_South central,MMMG_Southcentral,1
+XB064c2,PE,,86,XB064c2,163,MMMG,Southcentral,South central,YMX001658,MMMG_South central,MMMG_Southcentral,1
+XB065c1,PE,,87,XB065c1,157,MMMG,Southcentral,South central,YMX001609,MMMG_South central,MMMG_Southcentral,1
+XB073c8,PE,,89,XB073c8,145,MMMG,Southcentral,South central,YMX003824,MMMG_South central,MMMG_Southcentral,1
+XB075c7,PE,,90,XB075c7,10,Wine14,Southcentral,South central,YMX002071,Wine14_South central,Wine14_Southcentral,1
+XB076c1,PE,,91,XB076c1,143,MMMG,Balsas_basin,Balsas basin,YMX001969,MMMG_Balsas basin,MMMG_Balsas_basin,1
+XB094c2,PE,,92,XB094c2,142,MMMG,West,West II,YMX001826,MMMG_West II,MMMG_West,1
+XB251c1,PE,,93,XB251c1,148,MMMG,Balsas_basin,Balsas basin,YMX001153,MMMG_Balsas basin,MMMG_Balsas_basin,1
+XB252c1,PE,,94,XB252c1,148,MMMG,Balsas_basin,Balsas basin,YMX000937,MMMG_Balsas basin,MMMG_Balsas_basin,1
+XB254c1,PE,,95,XB254c1,141,MMMG,Balsas_basin,Balsas basin,YMX000721,MMMG_Balsas basin,MMMG_Balsas_basin,1
+XB256c3,PE,,96,XB256c3,137,MMMG,Southcentral,South central,YMX000963,MMMG_South central,MMMG_Southcentral,1
+XB258c4,PE,,97,XB258c4,148,MMMG,Southcentral,South central,YMX001036,MMMG_South central,MMMG_Southcentral,1
+DK001c10,PE,,98,DK001c10,141,MMMG,Southcentral,South central,YMX004198,MMMG_South central,MMMG_Southcentral,1
+XA024c2,PE,,99,XA024c2,141,MMMG,Balsas_basin,Balsas basin,YMX003194,MMMG_Balsas basin,MMMG_Balsas_basin,1
+XA137c1,PE,,100,XA137c1,157,MMMG,Southcentral,South central,YMX002497,MMMG_South central,MMMG_Southcentral,1
+XA139c1,PE,,101,XA139c1,161,MMMG,Southcentral,South central,YMX002713,MMMG_South central,MMMG_Southcentral,1
+XA140c2,PE,,102,XA140c2,161,MMMG,Southcentral,South central,YMX002378,MMMG_South central,MMMG_Southcentral,1
+XA195c1,PE,,103,XA195c1,134,MMMG,Northwest,West I,YMX004057,MMMG_West I,MMMG_Northwest,1
+YMX004566,PE,,107,YMX004566,147,MMMG,Balsas_basin,Balsas basin,YMX004566,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX004569,PE,,108,YMX004569,145,MMMG,Southcentral,South central,YMX004569,MMMG_South central,MMMG_Southcentral,1
+YMX004642,PE,,110,YMX004642,131,MMMG,West,West II,YMX004642,MMMG_West II,MMMG_West,1
+YMX004648,PE,,111,YMX004648,138,MMMG,Southcentral,South central,YMX004648,MMMG_South central,MMMG_Southcentral,1
+YMX004659,PE,,112,YMX004659,143,MMMG,West,West II,YMX004659,MMMG_West II,MMMG_West,1
+YMX004668,PE,,113,YMX004668,151,MMMG,West,West II,YMX004668,MMMG_West II,MMMG_West,1
+YMX004685,PE,,115,YMX004685,141,MMMG,Southcentral,South central,YMX004685,MMMG_South central,MMMG_Southcentral,1
+YMX004695,PE,,117,YMX004695,137,MMMG,Southcentral,South central,YMX004695,MMMG_South central,MMMG_Southcentral,1
+YMX005538,PE,,118,YMX005538,171,MMMG,Southcentral,South central,YMX005538,MMMG_South central,MMMG_Southcentral,1
+YMX005539,PE,,119,YMX005539,154,MMMG,Southcentral,South central,YMX005539,MMMG_South central,MMMG_Southcentral,1
+YMX005541,PE,,120,YMX005541,155,MMMG,Southcentral,South central,YMX005541,MMMG_South central,MMMG_Southcentral,1
+YMX005542,PE,,121,YMX005542,145,MMMG,Southcentral,South central,YMX005542,MMMG_South central,MMMG_Southcentral,1
+YMX005545,PE,,123,YMX005545,129,MMMG,West,West II,YMX005545,MMMG_West II,MMMG_West,1
+YMX005546,PE,,124,YMX005546,139,MMMG,West,West II,YMX005546,MMMG_West II,MMMG_West,1
+YMX005547,PE,,125,YMX005547,146,MMMG,Southcentral,South central,YMX005547,MMMG_South central,MMMG_Southcentral,1
+YMX005548,PE,,126,YMX005548,143,MMMG,Southcentral,South central,YMX005548,MMMG_South central,MMMG_Southcentral,1
+YMX005549,PE,,127,YMX005549,167,MMMG,Southcentral,South central,YMX005549,MMMG_South central,MMMG_Southcentral,1
+YMX005550,PE,,128,YMX005550,151,MMMG,Southcentral,South central,YMX005550,MMMG_South central,MMMG_Southcentral,1
+YMX005551,PE,,129,YMX005551,144,MMMG,Balsas_basin,Balsas basin,YMX005551,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005552,PE,,130,YMX005552,145,MMMG,Balsas_basin,Balsas basin,YMX005552,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005553,PE,,131,YMX005553,175,MMMG,Southcentral,South central,YMX005553,MMMG_South central,MMMG_Southcentral,1
+YMX005554,PE,,132,YMX005554,167,MMMG,Southcentral,South central,YMX005554,MMMG_South central,MMMG_Southcentral,1
+YMX005555,PE,,133,YMX005555,144,MMMG,Balsas_basin,Balsas basin,YMX005555,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005556,PE,,134,YMX005556,152,MMMG,Balsas_basin,Balsas basin,YMX005556,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005557,PE,,135,YMX005557,153,MMMG,Southcentral,South central,YMX005557,MMMG_South central,MMMG_Southcentral,1
+YMX005558,PE,,136,YMX005558,147,MMMG,Southcentral,South central,YMX005558,MMMG_South central,MMMG_Southcentral,1
+YMX005559,PE,,137,YMX005559,144,MMMG,Balsas_basin,Balsas basin,YMX005559,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005561,PE,,138,YMX005561,149,MMMG,Balsas_basin,Balsas basin,YMX005561,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005563,PE,,139,YMX005563,146,MMMG,Southcentral,South central,YMX005563,MMMG_South central,MMMG_Southcentral,1
+YMX005564,PE,,140,YMX005564,146,MMMG,Southcentral,South central,YMX005564,MMMG_South central,MMMG_Southcentral,1
+YMX005565,PE,,141,YMX005565,152,Tamaulipas,Northeast,Northeast,YMX005565,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+YMX005566,PE,,142,YMX005566,179,Tamaulipas,Northeast,Northeast,YMX005566,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+YMX005569,PE,,143,YMX005569,122,MMMG,Southcentral,South central,YMX005569,MMMG_South central,MMMG_Southcentral,1
+YMX005570,PE,,144,YMX005570,116,MMMG,Southcentral,South central,YMX005570,MMMG_South central,MMMG_Southcentral,1
+YMX005571,PE,,145,YMX005571,150,MMMG,Southcentral,South central,YMX005571,MMMG_South central,MMMG_Southcentral,1
+YMX005572,PE,,146,YMX005572,159,MMMG,Southcentral,South central,YMX005572,MMMG_South central,MMMG_Southcentral,1
+YMX005573,PE,,147,YMX005573,138,MMMG,Southcentral,South central,YMX005573,MMMG_South central,MMMG_Southcentral,1
+YMX005575,PE,,149,YMX005575,149,MMMG,Southcentral,South central,YMX005575,MMMG_South central,MMMG_Southcentral,1
+YMX005576,PE,,150,YMX005576,144,MMMG,Northwest,West I,YMX005576,MMMG_West I,MMMG_Northwest,1
+YMX005577,PE,,151,YMX005577,148,MMMG,Northwest,West I,YMX005577,MMMG_West I,MMMG_Northwest,1
+YMX005583,PE,,152,YMX005583,130,MMMG,Northwest,West I,YMX005583,MMMG_West I,MMMG_Northwest,1
+YMX005584,PE,,153,YMX005584,136,MMMG,Balsas_basin,Balsas basin,YMX005584,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005585,PE,,154,YMX005585,135,MMMG,West,West II,YMX005585,MMMG_West II,MMMG_West,1
+YMX005586,PE,,155,YMX005586,153,MMMG,West,West II,YMX005586,MMMG_West II,MMMG_West,1
+YMX005587,PE,,156,YMX005587,178,Tamaulipas,Northeast,Northeast,YMX005587,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+YMX005588,PE,,157,YMX005588,172,Tamaulipas,Northeast,Northeast,YMX005588,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+YMX005590,PE,,158,YMX005590,132,MMMG,Balsas_basin,Balsas basin,YMX005590,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005591,PE,,159,YMX005591,134,MMMG,West,West II,YMX005591,MMMG_West II,MMMG_West,1
+YMX005592,PE,,160,YMX005592,141,MMMG,Balsas_basin,Balsas basin,YMX005592,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005593,PE,,161,YMX005593,141,MMMG,Balsas_basin,Balsas basin,YMX005593,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005594,PE,,162,YMX005594,140,MMMG,West,West II,YMX005594,MMMG_West II,MMMG_West,1
+YMX005595,PE,,163,YMX005595,115,MMMG,Southcentral,South central,YMX005595,MMMG_South central,MMMG_Southcentral,1
+YMX005596,PE,,164,YMX005596,162,MMMG,Southcentral,South central,YMX005596,MMMG_South central,MMMG_Southcentral,1
+YMX005597,PE,,165,YMX005597,145,MMMG,Northwest,West I,YMX005597,MMMG_West I,MMMG_Northwest,1
+YMX005600,PE,,167,YMX005600,136,MMMG,Far_northwest,Northwest,YMX005600,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005601,PE,,168,YMX005601,146,MMMG,Far_northwest,Northwest,YMX005601,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005603,PE,,170,YMX005603,141,MMMG,Far_northwest,Northwest,YMX005603,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005609,PE,,173,YMX005609,135,MMMG,Far_northwest,Northwest,YMX005609,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005612,PE,,176,YMX005612,147,MMMG,Far_northwest,Northwest,YMX005612,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005616,PE,,177,YMX005616,147,MMMG,Balsas_basin,Balsas basin,YMX005616,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005618,PE,,179,YMX005618,136,MMMG,Balsas_basin,Balsas basin,YMX005618,MMMG_Balsas basin,MMMG_Balsas_basin,1
+YMX005620,PE,,181,YMX005620,140,MMMG,Far_northwest,Northwest,YMX005620,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005621,PE,,182,YMX005621,141,MMMG,Far_northwest,Northwest,YMX005621,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005622,PE,,183,YMX005622,145,MMMG,Far_northwest,Northwest,YMX005622,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005626,PE,,185,YMX005626,148,MMMG,Far_northwest,Northwest,YMX005626,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005628,PE,,187,YMX005628,141,MMMG,Far_northwest,Northwest,YMX005628,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005630,PE,,189,YMX005630,145,MMMG,Far_northwest,Northwest,YMX005630,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005632,PE,,190,YMX005632,140,MMMG,Far_northwest,Northwest,YMX005632,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005633,PE,,191,YMX005633,139,MMMG,Far_northwest,Northwest,YMX005633,MMMG_Northwest,MMMG_Far_northwest,1
+YMX005635,PE,,192,YMX005635,13,MixOrigin8,West,West II,YMX005635,MixOrigin8_West II,MixOrigin8_West,1
+YMX005636,PE,,193,YMX005636,14,MixOrigin8,West,West II,YMX005636,MixOrigin8_West II,MixOrigin8_West,1
+YMX005637,PE,,194,YMX005637,19,NortAmOak,Balsas_basin,Balsas basin,YMX005637,NortAmOak_Balsas basin,NortAmOak_Balsas_basin,1
+YMX005638,PE,,195,YMX005638,14,MixOrigin8,West,West II,YMX005638,MixOrigin8_West II,MixOrigin8_West,1
+YMX005639,PE,,196,YMX005639,80,Tequila,West,West II,YMX005639,Tequila_West II,Tequila_West,1
+YMX005640,PE,,197,YMX005640,88,Tequila,West,West II,YMX005640,Tequila_West II,Tequila_West,1
+YMX005641,PE,,198,YMX005641,14,MixOrigin8,West,West II,YMX005641,MixOrigin8_West II,MixOrigin8_West,1
+YMX005642,PE,,199,YMX005642,111,Tequila,West,West II,YMX005642,Tequila_West II,Tequila_West,1
+YMX005645,PE,,200,YMX005645,104,Tequila,West,West II,YMX005645,Tequila_West II,Tequila_West,1
+YMX005646,PE,,201,YMX005646,149,Tequila,West,Unknown,YMX005646,Tequila_Unknown,Tequila_West,1
+YMX506H07,PE,,203,YMX506H07,137,MMMG,Southcentral,South central,YMX009814,MMMG_South central,MMMG_Southcentral,1
+YMX506H08,PE,,204,YMX506H08,125,MMMG,Southcentral,South central,YMX009815,MMMG_South central,MMMG_Southcentral,1
+YMX506H09,PE,,205,YMX506H09,168,MMMG,Southcentral,South central,YMX009816,MMMG_South central,MMMG_Southcentral,1
+YMX507A02,PE,,206,YMX507A02,149,MMMG,Northwest,West I,YMX009821,MMMG_West I,MMMG_Northwest,1
+YMX507A04,PE,,207,YMX507A04,269,Tamaulipas,Northeast,Northeast,YMX009823,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+YMX507A05,PE,,208,YMX507A05,268,Tamaulipas,Northeast,Northeast,YMX009824,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+YMX507A06,PE,,209,YMX507A06,166,Tamaulipas,Northeast,Northeast,YMX009825,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+YMX507A07,PE,,210,YMX507A07,277,Tamaulipas,Northeast,Northeast,YMX009826,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+YMX507B01,PE,,211,YMX507B01,81,Tequila,West,West II,YMX009832,Tequila_West II,Tequila_West,1
+YMX507B02,PE,,212,YMX507B02,80,Tequila,West,West II,YMX009833,Tequila_West II,Tequila_West,1
+YMX507B03,PE,,213,YMX507B03,117,Tequila,West,West II,YMX009834,Tequila_West II,Tequila_West,1
+YMX507B04,PE,,214,YMX507B04,89,Tequila,West,West II,YMX009835,Tequila_West II,Tequila_West,1
+YMX507B05,PE,,215,YMX507B05,106,Tequila,West,West II,YMX009836,Tequila_West II,Tequila_West,1
+YMX507B06,PE,,216,YMX507B06,125,Tequila,West,West II,YMX009837,Tequila_West II,Tequila_West,1
+YMX507B07,PE,,217,YMX507B07,123,Tequila,West,West II,YMX009838,Tequila_West II,Tequila_West,1
+YMX506F12,PE,,218,YMX506F12,373,Tamaulipas,Northeast,Northeast,YMX009795,Tamaulipas_Northeast,Tamaulipas_Northeast,1
+JS109c1,PE,,219,JS109c1,152,MMMG,Southcentral,JS-MEX,ERS1082903,MMMG_JS-MEX,MMMG_Southcentral,1
+JS497c1,PE,,220,JS497c1,146,MMMG,West,JS-MEX,ERS1082384,MMMG_JS-MEX,MMMG_West,1
+JS863c1,PE,,221,JS863c1,150,Tamaulipas,Northeast,JS-MEX,ERS1082913,Tamaulipas_JS-MEX,Tamaulipas_Northeast,1
+JS462c1,PE,,222,JS462c1,217,Tamaulipas,Northeast,JS-MEX,ERS1082915,Tamaulipas_JS-MEX,Tamaulipas_Northeast,1
+JS421c1,PE,,223,JS421c1,170,Tamaulipas,Northeast,JS-MEX,ERS1082910,Tamaulipas_JS-MEX,Tamaulipas_Northeast,1
+JS273c1,PE,,224,JS273c1,280,Tamaulipas,Northeast,JS-MEX,ERS1082914,Tamaulipas_JS-MEX,Tamaulipas_Northeast,1
+JS240c1,PE,,225,JS240c1,285,Tamaulipas,Northeast,JS-MEX,ERS1082916,Tamaulipas_JS-MEX,Tamaulipas_Northeast,1
+JS880c1,PE,,226,JS880c1,147,Tamaulipas,Northeast,JS-MEX,ERS1082912,Tamaulipas_JS-MEX,Tamaulipas_Northeast,1
+JS806c1,PE,,227,JS806c1,148,Tamaulipas,Northeast,JS-MEX,ERS1082911,Tamaulipas_JS-MEX,Tamaulipas_Northeast,1
+JS326c1,PE,,228,JS326c1,65,FG,FG,JS-FG,ERS1082424,FG_JS-FG,FG_FG,1
+JS210c1,PE,,229,JS210c1,56,FG,FG,JS-FG,ERS1082425,FG_JS-FG,FG_FG,1
+JS818c1,PE,,230,JS818c1,75,FG,FG,JS-FG,ERS1082426,FG_JS-FG,FG_FG,1
+JS835c1,PE,,231,JS835c1,76,FG,FG,JS-FG,ERS1082427,FG_JS-FG,FG_FG,1
+JS171c1,PE,,232,JS171c1,64,FG,FG,JS-FG,ERS1082428,FG_JS-FG,FG_FG,1
+JS208c1,PE,,233,JS208c1,54,FG,FG,JS-FG,ERS1082429,FG_JS-FG,FG_FG,1
+JS014c1,PE,,234,JS014c1,54,FG,FG,JS-FG,ERS1082430,FG_JS-FG,FG_FG,1
+JS889c1,PE,,235,JS889c1,55,FG,FG,JS-FG,ERS1082431,FG_JS-FG,FG_FG,1
+JS654c1,PE,,236,JS654c1,65,FG,FG,JS-FG,ERS1082432,FG_JS-FG,FG_FG,1
+JS150c1,PE,,237,JS150c1,70,FG,FG,JS-FG,ERS1082433,FG_JS-FG,FG_FG,1
+JS933c1,PE,,238,JS933c1,67,FG,FG,JS-FG,ERS1082570,FG_JS-FG,FG_FG,1
+JS440c1,PE,,239,JS440c1,123,SAM2,FG,JS-FG,ERS1082935,SAM2_JS-FG,SAM2_FG,1
+JS387c1,PE,,240,JS387c1,56,FG,FG,JS-FG,ERS1082571,FG_JS-FG,FG_FG,1
+JS922c1,PE,,241,JS922c1,61,FG,FG,JS-FG,ERS1082572,FG_JS-FG,FG_FG,1
+JS114c1,PE,,242,JS114c1,67,FG,FG,JS-FG,ERS1082573,FG_JS-FG,FG_FG,1
+JS277c1,PE,,243,JS277c1,45,FG,FG,JS-FG,ERS1082574,FG_JS-FG,FG_FG,1
+JS861c1,PE,,244,JS861c1,48,FG,FG,JS-FG,ERS1082575,FG_JS-FG,FG_FG,1
+JS691c1,PE,,245,JS691c1,66,FG,FG,JS-FG,ERS1082392,FG_JS-FG,FG_FG,1
+JS468c1,PE,,246,JS468c1,60,FG,FG,JS-FG,ERS1082393,FG_JS-FG,FG_FG,1
+JS263c1,PE,,247,JS263c1,59,FG,FG,JS-FG,ERS1082394,FG_JS-FG,FG_FG,1
+JS599c1,PE,,248,JS599c1,62,FG,FG,JS-FG,ERS1082395,FG_JS-FG,FG_FG,1
+JS527c1,PE,,249,JS527c1,51,FG,FG,JS-FG,ERS1082396,FG_JS-FG,FG_FG,1
+JS310c1,PE,,250,JS310c1,60,FG,FG,JS-FG,ERS1082398,FG_JS-FG,FG_FG,1
+JS311c1,PE,,251,JS311c1,56,FG,FG,JS-FG,ERS1082399,FG_JS-FG,FG_FG,1
+JS759c1,PE,,252,JS759c1,70,FG,FG,JS-FG,ERS1082400,FG_JS-FG,FG_FG,1
+JS165c1,PE,,253,JS165c1,54,FG,FG,JS-FG,ERS1082401,FG_JS-FG,FG_FG,1
+JS728c1,PE,,254,JS728c1,70,FG,FG,JS-FG,ERS1082402,FG_JS-FG,FG_FG,1
+JS246c1,PE,,255,JS246c1,52,FG,FG,JS-FG,ERS1082403,FG_JS-FG,FG_FG,1
+JS270c1,PE,,256,JS270c1,70,FG,FG,JS-FG,ERS1082404,FG_JS-FG,FG_FG,1
+JS754c1,PE,,257,JS754c1,59,FG,FG,JS-FG,ERS1082405,FG_JS-FG,FG_FG,1
+ERR1309514,PE,,287,ERR1309514,64,SAM2,SAM2,JS-AmMix2,ERR1309514,SAM2_JS-AmMix2,SAM2_SAM2,1
+ERR1309020,PE,,288,ERR1309020,70,SAM2,SAM2,JS-AmMix2,ERR1309020,SAM2_JS-AmMix2,SAM2_SAM2,1
+BR021c1,PE,,289,BR021c1,113,SAM2,SAM2,AmMix2,ERR1111506,SAM2_AmMix2,SAM2_SAM2,1
+BR010c1,PE,,291,BR010c1,109,SAM2,SAM2,AmMix2,ERR1111495,SAM2_AmMix2,SAM2_SAM2,1
+BR011c1,PE,,292,BR011c1,104,SAM2,SAM2,AmMix2,ERR1111496,SAM2_AmMix2,SAM2_SAM2,1
+SRR800827,PE,,293,SRR800827,75,SAM2,SAM2,JS-AmMix2,SRR800827,SAM2_JS-AmMix2,SAM2_SAM2,1

@@ -1,0 +1,218 @@
+#Configuration file with definde variables
+configfile: "config.yaml"
+
+#Parse configfile
+ref_name = config["ref_name"]
+
+#Import general functions
+from aux import *
+
+#VARIABLES:
+reference = "data/ref/"+ref_name
+
+rule get_cerevisiae_regions:
+    input:
+        vcf = "data/{sample}_CONC.g.vcf"
+    output:
+        vcf_cerevisiae = "data/vcfs/{sample}.onlyCerevisiae-chr.g.vcf"
+    shell:
+        """
+        module load vcftools/0.1.14
+          vcftools --vcf {input.vcf} \
+          --chr SACE_S288C_v1_chr_01 \
+          --chr SACE_S288C_v1_chr_02 \
+          --chr SACE_S288C_v1_chr_03 \
+          --chr SACE_S288C_v1_chr_04 \
+          --chr SACE_S288C_v1_chr_05 \
+          --chr SACE_S288C_v1_chr_06 \
+          --chr SACE_S288C_v1_chr_07 \
+          --chr SACE_S288C_v1_chr_08 \
+          --chr SACE_S288C_v1_chr_09 \
+          --chr SACE_S288C_v1_chr_10 \
+          --chr SACE_S288C_v1_chr_11 \
+          --chr SACE_S288C_v1_chr_12 \
+          --chr SACE_S288C_v1_chr_13 \
+          --chr SACE_S288C_v1_chr_14 \
+          --chr SACE_S288C_v1_chr_15 \
+          --chr SACE_S288C_v1_chr_16 \
+          --recode --recode-INFO-all \
+          --out {output.vcf_cerevisiae}
+        mv {output.vcf_cerevisiae}.recode.vcf {output.vcf_cerevisiae}
+        """
+
+
+samples = unpack(get_samples())
+
+rule combine:
+    input:
+        expand("data/vcfs/{sample}.onlyCerevisiae-chr.g.vcf",sample = samples)
+    params:
+        vcfs_intro = lambda w: ["--variant data/vcfs/"+s+".onlyCerevisiae-chr.g.vcf" for s in samples]
+    output:
+        temp("data/vcfs/Matrix_noGT_combinedgvcfs.g.vcf.gz"),
+    shell:
+        """
+        module load gatk/4.1.1.0
+        gatk --java-options "-Xmx16g" CombineGVCFs -R {reference} \
+        {params.vcfs_intro} -O {output}
+        """
+
+rule genotype:
+    input:
+        rules.combine.output
+    output:
+        temp("data/vcfs/Matrix_combinedgvcfs_genotype.vcf")
+    shell:
+        """
+        module load gatk/4.1.1.0
+        gatk --java-options "-Xmx16g" GenotypeGVCFs \
+          -R {reference} \
+          -V {input} \
+          -O {output}
+        """
+rule select_SNPS:
+    # discard other types of Variants that are not SNPs
+    input:
+        rules.genotype.output
+    output:
+        "data/vcfs/Matrix_combinegvcfs_genotype_onlySNPs.vcf"
+    shell:
+        """
+        module load gatk/4.1.1.0
+        gatk --java-options "-Xmx16g" SelectVariants \
+          -R {reference} \
+          -V {input} \
+          --select-type-to-include SNP \
+          -O {output}
+        """
+
+rule filter_low:
+    #filter bassed on  GATK recommended thresholds
+    input:
+        rules.select_SNPS.output
+    output:
+        "data/vcfs/Matrix_combinegvcfs_genotype_onlySNPs_filterlow.vcf"
+    shell:
+        """
+        module load gatk/4.1.1.0
+        gatk --java-options "-Xmx16g" VariantFiltration \
+            -R {reference} \
+            -V {input} \
+            -O {output[0]} \
+            --filter-name "SNP_QD_filters" --filter-expression "QD<2.0" \
+            --filter-name "SNP_MQ_filters" --filter-expression "MQ<40.0" \
+            --filter-name "SNP_FS_filters" --filter-expression "FS>60.0" \
+            --filter-name "SNP_SOR_filters" --filter-expression  "SOR>3.0" \
+            --filter-name "SNP_MQRankSum_filters" --filter-expression "MQRankSum<-12.5" \
+            --filter-name "SNP_ReadPosRankSum_filters" --filter-expression "ReadPosRankSum<-8.0"
+        """
+
+rule remove_filtered:
+    input:
+        rules.filter_low.output
+    output:
+        "data/vcfs/Matrix_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs.vcf"
+    params:
+        # these are intermediate files
+        to_recode = "data/vcfs/Matrix_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs",
+        recoded = "data/vcfs/Matrix_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs.recode.vcf"
+    shell:
+        """
+        module load vcftools/0.1.14
+        vcftools --vcf {input} --remove-filtered-all --recode --out \
+            {params.to_recode}
+        mv {params.recoded} {output}
+        """
+
+
+rule missing_sites:
+    input:
+        rules.remove_filtered.output
+    output:
+        "data/vcfs/Matrix_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNP_10missing.vcf"
+    params:
+        to_recode = "data/vcfs/Matrix_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNP_10missing",
+        recoded = "data/vcfs/Matrix_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNP_10missing.recode.vcf",
+        percentage_missing = "0.9"
+    shell:
+        """
+        module load vcftools/0.1.14
+        vcftools --vcf {input} \
+            --max-missing {params.percentage_missing} \
+            --recode --out {params.to_recode}
+        mv {params.recoded} {output}
+        """
+# keep only biallelic SNPs
+rule keep_biallelic:
+    input:
+        rules.missing_sites.output
+    output:
+        "data/vcfs/Matrix_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNP_10missing_biallelic.vcf"
+    shell:
+        """
+        module load bcftools/1.9
+        bcftools view -M2 -v snps {input} >{output}
+        """
+#Extract ortholog regions
+rule extract_orthologs:
+    input:
+        rules.keep_biallelic.output,
+        "data/ortholog_regions.bed"
+    output:
+        "data/vcfs/Matrix_orthologs_filteredSNP_10missing_biallelic.vcf"
+    params:
+        to_recode = "Matrix_orthologs_filteredSNP_10missing_biallelic",
+        recoded = "Matrix_orthologs_filteredSNP_10missing_biallelic.recode.vcf"
+    shell:
+        """
+        module load vcftools/0.1.14
+        vcftools --vcf {input[0]} --bed {input[1]} --out {params.to_recode} --recode --keep-INFO-all
+        mv {params.recoded} {output}
+        """
+
+#Convert to vcf
+rule vcf2phylip:
+    input:
+        rules.extract_orthologs.output
+    params:
+        prefix = "data/phyl/temp"
+    output:
+        "data/phyl/Matrix_orthologs_filteredSNP_10missing_biallelic.min4.phy"
+    shell:
+        """
+        python scripts/vcf2phylip_v28.py -i {input} --output-prefix {params.prefix}
+        mv {params.prefix}.min4.phy {output}
+        """
+
+#Make phylo tree
+rule phylo_tree:
+    input:
+        rules.vcf2phylip.output
+    output:
+        best = "data/phyl/RAxML_bestTree.ortho.tree"
+    params:
+        dir = "data/phyl/",
+        name = "ortho.tree",
+        seed = "12345",
+        algorithm = "a",
+        model = "GTRGAMMA",
+        runs = "100",
+    threads: 4
+    shell:
+        """
+        module load raxml/8.2.12-avx2-pthreads
+        rm -f RAxML_info.{params.name}
+        raxmlHPC-PTHREADS-AVX2 -f {params.algorithm} -x {params.seed} -p {params.seed} \
+            -N {params.runs}  -T {threads} \
+            -m {params.model} \
+            -s {input} \
+            -n {params.name} \
+            -O || touch RAxML_bestTree.{params.name}
+        mv RAxML_bestTree.{params.name} {output.best}
+        [ -f RAxML_info.{params.name} ] && mv *.{params.name} {params.dir} || echo No variants found
+        """
+
+
+rule all:
+    input:
+        "data/phyl/RAxML_bestTree.ortho.tree"

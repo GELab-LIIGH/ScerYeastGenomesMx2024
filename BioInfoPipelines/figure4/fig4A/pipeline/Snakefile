@@ -1,0 +1,238 @@
+#Configuration file with definde variables
+configfile: "config.yaml"
+#Import auxiliary functions
+import pandas as pd
+from aux import *
+#Parse configfile
+reference = config['conc_reference']
+samples_SACE = config['sace']
+samples_SAPA = config['sapa']
+samples = config['sacensapa']
+f2SAPA = config['forced2sapa']
+coords = config["coords"]
+shared = config["shared"]
+
+ruleorder: combine > index > cut_vcfs
+
+# extract SNPs that are in the Paradoxus genome
+rule get_paradoxus_regions:
+    input:
+        vcf = "data/{sample}_CONC.g.vcf"
+    output:
+        vcf_paradoxus = "data/vcfs/{sample}.onlyParadoxus-chr.g.vcf"
+    shell:
+        """
+        module load vcftools/0.1.14
+          vcftools --vcf {input.vcf} \
+          --chr SAPA_YPS138_v1_chr_01 \
+          --chr SAPA_YPS138_v1_chr_02 \
+          --chr SAPA_YPS138_v1_chr_03 \
+          --chr SAPA_YPS138_v1_chr_04 \
+          --chr SAPA_YPS138_v1_chr_05 \
+          --chr SAPA_YPS138_v1_chr_06 \
+          --chr SAPA_YPS138_v1_chr_07 \
+          --chr SAPA_YPS138_v1_chr_08 \
+          --chr SAPA_YPS138_v1_chr_09 \
+          --chr SAPA_YPS138_v1_chr_10 \
+          --chr SAPA_YPS138_v1_chr_11 \
+          --chr SAPA_YPS138_v1_chr_12 \
+          --chr SAPA_YPS138_v1_chr_13 \
+          --chr SAPA_YPS138_v1_chr_14 \
+          --chr SAPA_YPS138_v1_chr_15 \
+          --chr SAPA_YPS138_v1_chr_16 \
+          --recode --recode-INFO-all \
+          --out {output.vcf_paradoxus}
+        mv {output.vcf_paradoxus}.recode.vcf {output.vcf_paradoxus}
+        """
+
+rule rehead_SAPA:
+    input:
+        "data/{sample}_SAPA.g.vcf"
+    params:
+        old_head = lambda w: "{}".format(w.sample),
+        new_head = lambda w: "{}SAPA".format(w.sample)
+    output:
+        "data/vcfs/{sample}_SAPA_rehead.g.vcf",
+        head = temp("data/vcfs/{sample}_new_head.txt")
+    shell:
+        """
+        module load bcftools/1.9
+        echo {params.old_head} {params.new_head} > {output.head}
+        bcftools reheader -s {output.head} {input} -o {output[0]}
+        """
+
+strains = [strain+".onlyParadoxus-chr.g" for strain in samples_SAPA] + [strain+"_SAPA_rehead.g" for strain in f2SAPA]
+all_vcfs = [strain+".onlyParadoxus-chr.g" for strain in samples] + [strain+"_SAPA_rehead.g" for strain in f2SAPA]
+
+rule merge_core:
+    input:
+        expand("data/vcfs/{sample}.vcf",sample = all_vcfs)
+    params:
+        vcfs = expand("--variant data/vcfs/{sample}.vcf",sample = strains)
+    output:
+        temp("data/vcfs/Matrix_core.g.vcf.gz")
+    shell:
+        """
+        module load gatk/4.1.6.0
+        gatk --java-options "-Xmx16g" CombineGVCFs -R {reference} \
+        {params.vcfs} -O {output}
+        """
+
+#INTROS = unpack(get_introgressions(coords))
+
+rule combine:
+    input:
+        "data/vcfs/Matrix_core.g.vcf.gz"
+    params:
+        vcfs_intro = lambda w: ["--variant data/vcfs/"+s+".onlyParadoxus-chr.g.vcf" for s in get_strains_share(shared,w.intro)],
+        vcfs_core = ("--variant data/vcfs/Matrix_core.g.vcf.gz")
+    output:
+        temp("data/vcfs/{intro}/Matrix_{intro}_noGT_combinedgvcfs.g.vcf.gz"),
+    shell:
+        """
+        module load gatk/4.1.6.0
+        gatk --java-options "-Xmx24g -Djava.io.tmpdir=`pwd`/tmp/" CombineGVCFs -R {reference} \
+        {params.vcfs_intro} {params.vcfs_core} -O {output} --tmp-dir `pwd`/tmp/
+        """
+
+rule index:
+    input:
+        "data/vcfs/{intro}/Matrix_{intro}_noGT_combinedgvcfs.g.vcf.gz"
+    output:
+        temp("data/vcfs/{intro}/Matrix_{intro}_noGT_combinedgvcfs.g.vcf.gz.csi")
+    shell:
+        """
+        module load bcftools/1.9
+        bcftools index {input} -o {output}
+        """
+
+INTROS = unpack(get_introgressions(coords))
+
+rule cut_vcfs:
+    input:
+        "data/vcfs/{intro}/Matrix_{intro}_noGT_combinedgvcfs.g.vcf.gz",
+        index = "data/vcfs/{intro}/Matrix_{intro}_noGT_combinedgvcfs.g.vcf.gz.csi"
+    params:
+        info = lambda w: "{0}:{1}-{2}".format(*get_introg_info("data/introgression_coordinates.txt",w.intro))
+    output:
+        cut_matrix = temp("data/vcfs/{intro}/Matrix_{intro}_noGT_combinedgvcfs_cut.g.vcf")
+    shell:
+        """
+        module load bcftools/1.9
+        bcftools view -r {params.info} {input[0]} -o {output.cut_matrix}
+        """
+
+rule done_cut:
+    input:
+        expand("data/vcfs/{intro}/Matrix_{intro}_noGT_combinedgvcfs_cut.g.vcf",intro = INTROS)
+    output:
+        temp("data/vcfs/done_cutting.txt")
+    shell:
+        """
+        echo {input} > {output}
+        """
+
+rule genotype:
+    input:
+        "data/vcfs/{intro}/Matrix_{intro}_noGT_combinedgvcfs_cut.g.vcf",
+        "data/vcfs/done_cutting.txt"
+    output:
+        temp("data/vcfs/{intro}/Matrix_{intro}_combinedgvcfs_genotype.vcf")
+    shell:
+        """
+        module load gatk/4.1.6.0
+        gatk --java-options "-Xmx16g" GenotypeGVCFs \
+          -R {reference} \
+          -V {input[0]} \
+          -O {output}
+        """
+rule select_SNPS:
+    # discard other types of Variants that are not SNPs
+    input:
+        "data/vcfs/{intro}/Matrix_{intro}_combinedgvcfs_genotype.vcf"
+    output:
+        temp("data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs.vcf")
+    shell:
+        """
+        module load gatk/4.1.6.0
+        gatk --java-options "-Xmx16g" SelectVariants \
+          -R {reference} \
+          -V {input} \
+          --select-type-to-include SNP \
+          -O {output}
+        """
+rule filter_low:
+    #filter bassed on  GATK recommended thresholds
+    #except for MQ, 40 -> 30
+    input:
+        "data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs.vcf"
+    output:
+        temp("data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow.vcf")
+    shell:
+        """
+        module load gatk/4.1.6.0
+        gatk --java-options "-Xmx16g" VariantFiltration \
+            -R {reference} \
+            -V {input} \
+            -O {output[0]} \
+            --filter-name "SNP_QD_filters" --filter-expression "QD<2.0" \
+            --filter-name "SNP_MQ_filters" --filter-expression "MQ<30.0" \
+            --filter-name "SNP_FS_filters" --filter-expression "FS>60.0" \
+            --filter-name "SNP_SOR_filters" --filter-expression  "SOR>3.0" \
+            --filter-name "SNP_MQRankSum_filters" --filter-expression "MQRankSum<-12.5" \
+            --filter-name "SNP_ReadPosRankSum_filters" --filter-expression "ReadPosRankSum<-8.0"
+        """
+rule remove_filtered:
+    input:
+        "data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow.vcf"
+    output:
+        temp("data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs.vcf")
+    params:
+        # these are intermediate files
+        to_recode = "data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs",
+        recoded = "data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs.recode.vcf"
+    shell:
+        """
+        module load vcftools/0.1.14
+        vcftools --vcf {input} --remove-filtered-all --recode --out \
+            {params.to_recode}
+        mv {params.recoded} {output}
+        """
+rule missing_sites:
+    input:
+        "data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs.vcf"
+    output:
+        temp("data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40.vcf")
+    params:
+        to_recode = "data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40",
+        recoded = "data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40.recode.vcf",
+        percentage_missing = "0.6"
+    shell:
+        """
+        module load vcftools/0.1.14
+        vcftools --vcf {input} \
+            --max-missing {params.percentage_missing} \
+            --recode --out {params.to_recode}
+        mv {params.recoded} {output}
+        """
+# keep only biallelic SNPs
+rule keep_biallelic:
+    input:
+        "data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40.vcf"
+    output:
+        "data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40_biallelic.vcf"
+    shell:
+        """
+        module load bcftools/1.9
+        bcftools view -M2 -v snps {input} >{output}
+        """
+
+rule final:
+    input:
+        expand("data/vcfs/{intro}/Matrix_{intro}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40_biallelic.vcf",intro=INTROS)
+    output:
+        "data/done.txt"
+    shell:
+        """
+        echo {input} found! >> {output}
+        """

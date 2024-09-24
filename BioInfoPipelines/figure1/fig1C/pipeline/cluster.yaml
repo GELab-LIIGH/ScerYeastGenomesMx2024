@@ -1,0 +1,20 @@
+__default__:
+  M: 'iesedeno@gmail.com'
+  N: 'rule_{rule}.{wildcards}'
+  l: 'vf=16G'
+  q: 'all.q@compute-00-12.cm'
+  pe: 'openmp 1'
+  m: 'a'
+  r: 'n'
+  e: 'st/log-{rule}.{wildcards}.err'
+  o: 'st/log-{rule}.{wildcards}.out'
+  S: '/bin/bash'
+
+get_cerevisiae_regions:
+  l: 'vf=4G'
+
+combine:
+  l: 'vf=64G'
+
+phylo_tree:
+    pe: 'openmp 4'
