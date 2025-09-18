@@ -1,0 +1,19 @@
+__default__:
+  M: 'iesedeno@gmail.com'
+  N: 'rule_{rule}.{wildcards}'
+  l: 'vf=4G'
+  q: 'all.q@compute-00-11.cm'
+  pe: 'openmp 1'
+  mem: '8G'
+  m: 'a'
+  r: 'n'
+  e: 'st/log-{jobid}.othertrees.err.ne'
+  o: 'st/log-{jobid}.othertrees.out.ne'
+  S: '/bin/bash'
+
+combine:
+  pe: 'openmp 4'
+  mem: '32G'
+
+phylo_tree:
+  pe: 'openmp 4'

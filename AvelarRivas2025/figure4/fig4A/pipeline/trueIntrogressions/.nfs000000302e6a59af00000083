@@ -1,0 +1,290 @@
+# Pipeline parameters
+
+#Fasta with the concatenated reference.
+conc_reference: "../../../isedeno/articleFigures/final/figure1/fig1C/pipeline/data/ref/CONC_Mez1_v1_allChr.fasta"
+
+#Folder where the *intro_SAPA_All_noOrth.csv are placed.
+#This files contain the info about the introgression about each strain.
+blocks_folder: "./data/blocks/"
+
+#This files contain the info about the introgression about each strain.
+introgressions_folder: "../../../isedeno/articleFigures/final/figure3/fig3A/pipeline/data/introgressions/"
+
+#Processed S. paradoxus annotation file, this file contains only genes and has
+#limited information, it is formated as a tab separeted values joined by
+annotation_file: "../../../isedeno/articleFigures/final/figure3/fig3A/pipeline/data/SAPA_YPS138_v1.txt"
+
+#File with the 217 strains used in figure 2 from the article
+#subsample: "./SampleSheet_SACE_article.csv"
+
+#The following files contain the coordinates of the introgressions and
+coords: "data/introgression_coordinates.txt"
+shared: "data/shared_introgressions.txt"
+
+#Best models file
+models: "data/BestModels.csv"
+#SACE strains that were forced to align against the SAPA_YPS138 reference.
+forced2sapa:
+  - JS611c1
+  - JS445c1
+
+#SAPA strains to be used
+sapa:
+  - YMX005537
+  - SRR7500262
+  - SRR4074385
+  - SRR4074411
+  - SRR4074412
+
+#Sace strains to be used
+sace:
+  - JS657c1
+  - JS119c1
+  - JS293c1
+  - JS804c1
+  - JS624c1
+  - JS677c1
+  - JS385c1
+  - JS329c1
+  - JS722c1
+  - JS460c1
+  - JS065c1
+  - JS862c1
+  - JS735c1
+  - JS756c1
+  - JS937c1
+  - JS191c1
+  - JS925c1
+  - JS157c1
+  - JS915c1
+  - JS025c1
+  - JS499c1
+  - JS211c1
+  - JS104c1
+  - JS906c1
+  - JS274c1
+  - JS737c1
+  - JS321c1
+  - ERR3010122
+  - JS389c1
+  - JS294c1
+  - JS008c1
+  - JS748c1
+  - ERR1308649
+  - JS346c1
+  - ERR1309363
+  - JS525c1
+  - JS885c1
+  - JS846c1
+  - JS579c1
+  - JS163c1
+  - JS281c1
+  - JS771c1
+  - JS757c1
+  - JS127c1
+  - JS418c1
+  - JS542c1
+  - ERR1308637
+  - JS086c1
+  - JS375c1
+  - JS252c1
+  - JS454c1
+  - ERR1309078
+  - JS417c1
+  - JS419c1
+  - JS594c1
+  - JS783c1
+  - JS368c1
+  - JS166c1
+  - JS423c1
+  - JS194c1
+  - JS502c1
+  - JS402c1
+  - JS903c1
+  - JS372c1
+  - JS247c1
+  - BR008c1
+  - JS576c1
+  - JS881c1
+  - JS849c1
+  - JS312c1
+  - JS098c1
+  - JS678c1
+  - JS474c1
+  - JS910c1
+  - JS670c1
+  - JS774c1
+  - DS002c6
+  - XA031c2
+  - XA055c2
+  - XA083c1
+  - XA107c1
+  - XA108c1
+  - XA131c10
+  - XA131c13
+  - XA131c1
+  - XA131c20
+  - XA131c2
+  - XA131c4
+  - XA147c2
+  - XA151c6
+  - XA153c1
+  - XA156c1
+  - XA187c1
+  - XA201c1
+  - XA258c4
+  - XB006c2
+  - XB045c4
+  - XB048c1
+  - XB051c4
+  - XB053c1
+  - XB069c1
+  - YMX004549
+  - YMX004563
+  - YMX004564
+  - YMX004594
+  - YMX004678
+  - YMX004688
+  - YMX005543
+  - YMX005574
+  - YMX005599
+  - YMX005602
+  - YMX005604
+  - YMX005608
+  - YMX005610
+  - YMX005611
+  - YMX005617
+  - YMX005619
+  - YMX005625
+  - YMX005627
+  - YMX005629
+  - YMX005648
+  - ERR1308822
+  - JS682c1
+  - ERR1309321
+  - JS719c1
+  - JS553c1
+  - ERR1309444
+  - JS740c1
+  - JS585c1
+  - JS160c1
+  - ERR1308608
+  - ERR1309212
+  - ERR1309203
+  - ERR1308849
+  - ERR1309445
+  - ERR1309074
+  - ERR1309133
+  - JS038c1
+  - JS807c1
+  - ERR1308678
+  - ERR1309296
+  - ERR1309119
+  - ERR1309378
+  - JS032c1
+  - JS080c1
+  - JS939c1
+  - JS070c1
+  - JS773c1
+  - ERR1308794
+  - SRR800841
+  - JS510c1
+  - JS561c1
+  - JS612c1
+  - JS235c1
+  - JS356c1
+  - JS581c1
+  - JS562c1
+  - JS262c1
+  - ERR1309090
+  - ERR1308655
+  - JS646c1
+  - ERR1308971
+  - ERR1309222
+  - ERR1309013
+  - ERR1308722
+  - BR020c1
+  - BR002c1
+  - BR003c1
+  - BR022c1
+  - BR004c1
+  - BR024c1
+  - BR005c1
+  - BR006c1
+  - BR025c1
+  - BR007c1
+  - BR027c1
+  - BR028c1
+  - BR012c1
+  - BR013c1
+  - BR014c1
+  - ERR2299987
+  - BR015c1
+  - BR016c1
+  - SRR5678625
+  - ERR1308993
+  - ERR1309443
+  - ERR1308776
+  - BR023c1
+  - ERR1309288
+  - ERR756202
+  - SRR5678661
+  - SRR5678667
+  - ERR2299969
+  - BR001c1
+  - ERR2299976
+  - ERR2299978
+  - ERR2299979
+  - ERR2299980
+  - ERR2299981
+  - ERR2299982
+  - ERR2299983
+  - ERR2299984
+  - BR026c1
+  - SRR800806
+  - JS611c1
+  - JS471c1
+  - JS089c1
+  - ERR1308975
+  - ERR1309100
+  - ERR1308783
+  - ERR1308685
+  - BR009c1
+  - SRR800836
+  - SRR800838
+  - ERR1308708
+  - ERR1309458
+  - JS781c1
+  - ERR1308915
+  - ERR1308999
+  - JS649c1
+  - JS348c1
+  - JS345c1
+  - JS204c1
+  - JS033c1
+  - JS161c1
+  - JS825c1
+  - JS288c1
+  - JS410c1
+  - JS319c1
+  - JS378c1
+  - JS827c1
+  - JS688c1
+  - JS445c1
+  - JS022c1
+  - JS898c1
+  - JS741c1
+  - JS671c1
+  - JS760c1
+  - JS308c1
+  - JS002c1
+  - JS772c1
+  - JS733c1
+  - JS928c1
+  - JS094c1
+  - JS229c1
+  - JS574c1
+  - JS254c1
+  - JS660c1
+  - JS403c1
+  - JS817c1

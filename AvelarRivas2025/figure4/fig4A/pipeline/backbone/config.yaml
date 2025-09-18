@@ -1,0 +1,264 @@
+# Pipeline parameters
+
+#Fasta with the concatenated reference.
+conc_reference: "../../../../final/figure1/fig1C/pipeline/data/ref/CONC_Mez1_v1_allChr.fasta"
+
+#Folder where the *intro_SAPA_All_noOrth.csv are placed.
+#This files contain the info about the introgression about each strain.
+blocks_folder: "./data/blocks/"
+
+#This files contain the info about the introgression about each strain.
+introgressions_folder: "../../../../final/figure3/fig3A/pipeline/data/introgressions/"
+
+#Processed S. paradoxus annotation file, this file contains only genes and has
+#limited information, it is formated as a tab separeted values joined by
+annotation_file: "../../../../final/figure3/fig3A/pipeline/data/SAPA_YPS138_v1.txt"
+
+#File with the 217 strains used in figure 2 from the article
+#subsample: "./SampleSheet_SACE_article.csv"
+
+#The following files contain the coordinates of the introgressions and
+coords: "data/introgression_coordinates.txt"
+shared: "data/shared_introgressions.txt"
+
+#Best models file
+models: "data/BestModels.csv"
+#SACE strains that were forced to align against the SAPA_YPS138 reference.
+forced2sapa:
+  - JS611c1
+  - JS445c1
+
+#SAPA strains to be used
+sapa:
+  - YMX005537
+  - YMX506D10
+  - YMX506G11
+  - SRR7500218
+  - SRR4074412
+  - SRR4453541
+  - SRR7500262
+  - SRR4074413
+  - SRR4074385
+  - SRR17688646
+  - SRR17688648
+  - SRR4074411
+
+#Sace strains to be used
+sace:
+  - DK001c27
+  - DK003c56
+  - DK016c5
+  - DK017c4
+  - DK018c4
+  - DK019c1
+  - DS002c10
+  - DS002c4
+  - DS002c5
+  - XA017c1
+  - XA023c1
+  - XA030c1
+  - XA057c4
+  - XA070c1
+  - XA072c4
+  - XA074c2
+  - XA081c6
+  - XA083c6
+  - XA097c4
+  - XA098c2
+  - XA121c18
+  - XA121c20
+  - XA121c6
+  - XA124c1
+  - XA125c5
+  - XA126c1
+  - XA126c5
+  - XA126c7
+  - XA131c18
+  - XA132c2
+  - XA133c5
+  - XA134c1
+  - XA142c1
+  - XA143c7
+  - XA144c3
+  - XA145c3
+  - XA146c1
+  - XA154c1
+  - XA186c3
+  - XA189c1
+  - XA190c1
+  - XA191c2
+  - XA196c1
+  - XA197c1
+  - XA200c2
+  - XA211c1
+  - XA251c2
+  - XA252c3
+  - XA254c23
+  - XA255c1
+  - XA261c23
+  - XB001c4
+  - XB011c1
+  - XB041c1
+  - XB044c4
+  - XB047c2
+  - XB050c1
+  - XB052c1
+  - XB054c5
+  - XB056c1
+  - XB064c2
+  - XB065c1
+  - XB073c8
+  - XB075c7
+  - XB076c1
+  - XB094c2
+  - XB251c1
+  - XB252c1
+  - XB254c1
+  - XB256c3
+  - XB258c4
+  - DK001c10
+  - XA024c2
+  - XA137c1
+  - XA139c1
+  - XA140c2
+  - XA195c1
+  - YMX004566
+  - YMX004569
+  - YMX004642
+  - YMX004648
+  - YMX004659
+  - YMX004668
+  - YMX004685
+  - YMX004695
+  - YMX005538
+  - YMX005539
+  - YMX005541
+  - YMX005542
+  - YMX005545
+  - YMX005546
+  - YMX005547
+  - YMX005548
+  - YMX005549
+  - YMX005550
+  - YMX005551
+  - YMX005552
+  - YMX005553
+  - YMX005554
+  - YMX005555
+  - YMX005556
+  - YMX005557
+  - YMX005558
+  - YMX005559
+  - YMX005561
+  - YMX005563
+  - YMX005564
+  - YMX005565
+  - YMX005566
+  - YMX005569
+  - YMX005570
+  - YMX005571
+  - YMX005572
+  - YMX005573
+  - YMX005575
+  - YMX005576
+  - YMX005577
+  - YMX005583
+  - YMX005584
+  - YMX005585
+  - YMX005586
+  - YMX005587
+  - YMX005588
+  - YMX005590
+  - YMX005591
+  - YMX005592
+  - YMX005593
+  - YMX005594
+  - YMX005595
+  - YMX005596
+  - YMX005597
+  - YMX005600
+  - YMX005601
+  - YMX005603
+  - YMX005609
+  - YMX005612
+  - YMX005616
+  - YMX005618
+  - YMX005620
+  - YMX005621
+  - YMX005622
+  - YMX005626
+  - YMX005628
+  - YMX005630
+  - YMX005632
+  - YMX005633
+  - YMX005635
+  - YMX005636
+  - YMX005637
+  - YMX005638
+  - YMX005639
+  - YMX005640
+  - YMX005641
+  - YMX005642
+  - YMX005645
+  - YMX005646
+  - YMX506H07
+  - YMX506H08
+  - YMX506H09
+  - YMX507A02
+  - YMX507A04
+  - YMX507A05
+  - YMX507A06
+  - YMX507A07
+  - YMX507B01
+  - YMX507B02
+  - YMX507B03
+  - YMX507B04
+  - YMX507B05
+  - YMX507B06
+  - YMX507B07
+  - YMX506F12
+  - JS109c1
+  - JS497c1
+  - JS863c1
+  - JS462c1
+  - JS421c1
+  - JS273c1
+  - JS240c1
+  - JS880c1
+  - JS806c1
+  - JS326c1
+  - JS210c1
+  - JS818c1
+  - JS835c1
+  - JS171c1
+  - JS208c1
+  - JS014c1
+  - JS889c1
+  - JS654c1
+  - JS150c1
+  - JS933c1
+  - JS440c1
+  - JS387c1
+  - JS922c1
+  - JS114c1
+  - JS277c1
+  - JS861c1
+  - JS691c1
+  - JS468c1
+  - JS263c1
+  - JS599c1
+  - JS527c1
+  - JS310c1
+  - JS311c1
+  - JS759c1
+  - JS165c1
+  - JS728c1
+  - JS246c1
+  - JS270c1
+  - JS754c1
+  - ERR1309514
+  - ERR1309020
+  - BR021c1
+  - BR010c1
+  - BR011c1
+  - SRR800827
