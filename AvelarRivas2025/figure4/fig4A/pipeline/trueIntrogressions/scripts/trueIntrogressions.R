@@ -2,13 +2,13 @@ options(stringsAsFactors = F)
 library(reshape2)
 ################################################################################
 ###########                            INS                           ###########
-ori <- "/Users/invitado/Documents/Estancia5/"
-directory <- "/mnt/Timina/lmorales/Public/reducedSpaTrees/pipelineBra2/data/ascTrees/results/"
-compareDirectory <- "/mnt/Timina/lmorales/isedeno/IntrogressionComparison/"
+ori <- ""
+directory <- "data/ascTrees/"
+compareDirectory <- directory
 dir <- paste0(ori,directory)
 compareDir <- paste0(ori,compareDirectory)
-annotFile <- paste0(ori,"/mnt/Timina/lmorales/isedeno/articleFigures/final/figure3/fig3A/pipeline/data/SAPA_YPS138_v1.txt")
-blockListFile <- paste0(ori,"/mnt/Timina/lmorales/Public/reducedSpaTrees/pipelineBra2/data/introgression_coordinates.txt")
+annotFile <- paste0(ori,"data/SAPA_YPS138_v1.txt")
+blockListFile <- paste0(ori,"../backbone/data/introgression_coordinates.txt")
 ################################################################################
 ################################################################################
 ###########                           OUTS                           ###########
@@ -84,8 +84,3 @@ write.csv(intro_mat,file = outFile,row.names=FALSE)
 genes <- colnames(intro_mat[,-c(1)])
 genes <- sub("^YPS138_", "", genes)
 write.table(genes,file = IntrosFile,row.names=FALSE,col.names=FALSE,quote=FALSE)
-
-setwd("/Users/invitado/Documents/Estancia5/mnt/Timina/lmorales/isedeno/IntrogressionComparison")
-df_intros <- df_intros[df_intros$value == 1,]
-keepp <- c("ERR1309514","ERR1309020","BR021c1","BR010c1","BR011c1","SRR800827","JS440c1")
-df_intros[df_intros$ID %in% keepp,]

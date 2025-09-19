@@ -161,7 +161,7 @@ def find_orthologs(sapaf,sacef):
 					mrCoveredRds = float(str(ps_mr.communicate()[0]).split("'")[1].split("\\")[0])
 				except:
 					mrCoveredRds = 0
-				norm_file = f"/mnt/Timina/lmorales/Public/ymez/stats/coverage/{sample}/CONC/Q20/{sample}_CONC_Q20_perReference.csv"
+				norm_file = f"../data/stats/{sample}_CONC_Q20_perReference.csv"
 				norm_open = pd.read_csv(norm_file, sep=",",names = ["Ref","Reads","Mean","Min","Max","l_quantile","Median","u_quantile","Above_10X"]).sort_values(by="Median",ascending=False)
 				median = float(norm_open["Median"][1])
 				SAPAnorm = float(SAPAcov)/median

@@ -1,7 +1,7 @@
 # Pipeline parameters
 
 #Fasta with the concatenated reference.
-conc_reference: "../../../../final/figure1/fig1C/pipeline/data/ref/CONC_Mez1_v1_allChr.fasta"
+conc_reference: "../data/CONC_Mez1_v1_allChr.fasta"
 
 #Folder where the *intro_SAPA_All_noOrth.csv are placed.
 #This files contain the info about the introgression about each strain.

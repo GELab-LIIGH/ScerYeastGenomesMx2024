@@ -17,3 +17,4 @@ snakemake --keep-going -s backbone.smk -p -j 30 --latency-wait 60 --cluster-conf
 bash scripts/selectModels.sh
 snakemake --keep-going -s Snakefile -p -j 100 --latency-wait 60 --cluster-config cluster.yaml --cluster 'qsub -V -S {cluster.S} -N {cluster.N} -cwd -e {cluster.e} -o {cluster.o} -q {cluster.q} -M {cluster.M} -l {cluster.l} -pe {cluster.pe} -m {cluster.m} -r {cluster.r}' all
 bash scripts/toRelaunch.sh
+Rscript scripts/trueIntrogressions.R

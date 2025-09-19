@@ -3,7 +3,12 @@ mkdir -p data/stats/
 mkdir -p tmp
 mkdir -p st
 
+cd data/
+tar -zxf CONC_Mez1_v1_allChr.tar.gz
+
 bash stage1.sh
 cd ./backbone/
 bash run.sh
-Rscripts graph.R data/introgressions/ phylogeny.csv trueintros
+cd ../trueIntrogressions/
+bash run.sh
+Rscripts graph.R data/introgressions/ phylogeny.csv trueintrosFile
