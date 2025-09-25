@@ -8,11 +8,11 @@ conc_reference: "../data/CONC_Mez1_v1_allChr.fasta"
 blocks_folder: "./data/blocks/"
 
 #This files contain the info about the introgression about each strain.
-introgressions_folder: "../../../isedeno/articleFigures/final/figure3/fig3A/pipeline/data/introgressions/"
+introgressions_folder: "../data/introgressions/"
 
 #Processed S. paradoxus annotation file, this file contains only genes and has
 #limited information, it is formated as a tab separeted values joined by
-annotation_file: "../../../isedeno/articleFigures/final/figure3/fig3A/pipeline/data/SAPA_YPS138_v1.txt"
+annotation_file: "../data/SAPA_YPS138_v1.txt"
 
 #File with the 217 strains used in figure 2 from the article
 #subsample: "./SampleSheet_SACE_article.csv"

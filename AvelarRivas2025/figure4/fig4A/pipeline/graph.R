@@ -5,7 +5,7 @@ argsVal <- commandArgs(trailingOnly = T)
 introDir <- argsVal[1]
 samples <- argsVal[2]
 fList <- argsVal[3]
-out <- paste0(introDir,"fig3A.pdf")
+out <- paste0(introDir,"fig4A.pdf")
 hetOut <- paste0(introDir,"hetero.csv")
 
 fMatrix <- fread(fList)
