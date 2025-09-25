@@ -1,4 +1,4 @@
-# **Recreating Figure 3A**
+# **Recreating Figure 4A**
 ---
 ## **Inputs:**
 
@@ -19,14 +19,18 @@
 
 ---
 ## **Scripts:**
-| No. | Script             | Output | Description |
-|-----|--------------------|--------|-------------|
+| No. | Script             | Output |
+|-----|--------------------|--------|
 |**1.**|`run.sh`|No explicit output, runs all pipeline.|
 |**2.**|`pipeline/scripts/make_depth_plot.R`|CSVs with the coverage statistics per windows, per reference and per contig.|
 |**3.**|`pipeline/scripts/gff2txt.py`|<p>TXT formatted gff containing only genes.</p><p>Bed file with all genes described in the txt mentioned before.</p><p>Index of the bed file mentioned before in tabix format.</p>|
 |**4.**|`pipeline/scripts/overlapping_genesAbove.py`|CSVs with coverage from genes.|
 |**5.**|`pipeline/scripts/ortholog_coverageAll.py`|CSVs with coverage statistics from introgressions.|
 |**6.**|`pipeline/scripts/graph.R`|Graph with the distributions of number of introgressions by phylogenetic group, colored by heterozigosity.|
+|**7.**|`pipeline/trueIntrogressions/Snakefile`|Phylogenetic trees per introgression block per sample|
+|**8.**|`pipeline/trueIntrogressions/coords.smk`|List of coordinates of introgression blocks and how they are shared among samples.|
+|**9.**|`pipeline/trueIntrogressions/MakeBlocks.smk`|List of blocks of introgression in samples and summary statistics of each block.|
+|**10.**|`pipeline/trueIntrogressions/backbone.smk`|Phylogenetic backbone trees per introgression block across all samples.|
 
 
 ### *Packages/Dependencies:*

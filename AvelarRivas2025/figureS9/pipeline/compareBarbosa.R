@@ -7,11 +7,8 @@ library(ggvenn)
 ##############                       INPUTS                       ##############
 ################################################################################
 barbosaIntros <- "./barbosaIntros.csv"
-ygmxIntros <- "../../figure4/fig4A/pipeline/trueIntrogressions/data/ascTrees/updatedMatrix100425_v2.csv"
+ygmxIntros <- "../../figure4/fig4A/pipeline/trueIntrogressions/data/ascTrees/updatedMatrix020725_final.csv"
 telliniIntros <- "./telliniIntros.csv"
-equivalenceTelliniFile <- "./equivalenceTellini.tsv"
-equivalenceYGMXFile <- "./equivalenceYGMX.tsv"
-
 YGMXGenesDictFile <- "./GenesEquivalenceYPS138_v2.txt"
 runIdsFile <- "./idNamesRelation.csv"
 ################################################################################
