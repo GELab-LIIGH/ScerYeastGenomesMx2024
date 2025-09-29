@@ -1,0 +1,59 @@
+file_pattern = "Phylogroups\\*_results.Tajima.D"
+archivos = glob.glob(file_pattern)
+orden=[30,29,15,25,10,31,32,3,26]# Para que sean los favoritos #22-NAOak #
+n=len(orden)
+#orden = [i for i in range(0, len(archivos) )] # para que sean todos
+sorted_archivos = [archivos[index] for index in orden]
+con = 0
+n = len(sorted_archivos)
+color = iter(cm.rainbow(np.linspace(0, 1, n)))
+fig, ax = plt.subplots(figsize=(5, 3.5))
+all_data = []
+medias=[]
+medianas=[]
+for file_path in sorted_archivos:
+    df = pd.read_csv(file_path, sep='\t')
+    data = df.TajimaD
+    all_data.append(data)
+    medias.append(np.mean(data) )
+    medianas.append(np.nanmedian(data))
+    c = next(color)
+ax.axhline(y=0, color='black', linestyle='--', linewidth=2)
+sns.boxplot(data=all_data, ax=ax, showfliers=False)
+ax.set_xticks(range(n))
+ax.set_xticklabels( (sorted_archivos[i][12:22] for i in range(n)), rotation=90)
+#plt.xlabel('Category')
+plt.ylabel('Tajimas D')
+plt.title('filtered matrix')
+plt.tight_layout() 
+#plt.savefig('Phylogroups\\Tajima.results.Tajima.D.pdf')
+plt.show()
+print("media", medias)
+print("mediana",medianas)
+
+
+
+all_data_DF = pd.DataFrame(all_data, index=(sorted_archivos[i][12:22] for i in range(n)) )
+all_data_DF=all_data_DF.T
+all_data_no_nan = all_data_DF.dropna()
+
+n_cols = len(all_data_DF.columns)
+p_values_matrix = pd.DataFrame(np.zeros((n_cols, n_cols)), columns=all_data_DF.columns, index=all_data_DF.columns)
+for col1, col2 in combinations(all_data_DF.columns, 2):
+    data1 = all_data_DF[col1].dropna()
+    data2 = all_data_DF[col2].dropna()
+    u_stat, p_value = mannwhitneyu(data1, data2)
+    p_values_matrix.loc[col1, col2] = p_value
+    p_values_matrix.loc[col2, col1] = p_value  # Since the test is symmetric, set the value for both (col1, col2) and (col2, col1)
+
+plt.figure(figsize=(6.5, 5))
+sns.heatmap(p_values_matrix, annot=True, cmap='viridis', fmt=".3f")
+plt.title('Mann-Whitney U Test P-Values Matrix Tajimas D')
+plt.show()
+p_values_matrix
+p_values_matrix.to_csv('p_values_matrix_MannWhitneyUTest_TajimasD.csv', index=True)
+
+
+
+
+

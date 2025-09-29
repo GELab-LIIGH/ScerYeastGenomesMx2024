@@ -1,0 +1,69 @@
+
+SACE467=pd.read_csv('../SampleSheet_SACE467_V8.csv')
+dfhet=pd.read_csv('Output_heterozygosity_CONC.SNP_onlychr_SACE.g.vcf.txt')
+dfhet
+df467 = pd.merge(SACE467, dfhet, right_on="Strain", left_on="ID")
+
+
+
+fig, ax = plt.subplots(figsize=(5, 3.5))
+# Create the boxplot with actual data points
+#sns.boxplot(x='PhyloGroup_SACE469', y='Heterozygosity', data=df, width=.1, hue='PhyloGroup_SACE469')
+group_order = ['MMMG', 'FG', 'SAM2', 'Tamaulipas', 'Tequila', 'SAM3','Wine14', 'Alpechin',   'Wine12','MR2_Wine', 'MosR1_WINE', 'FrenDairy',
+                'MedOak','AfrBeer','MixOrigin8',
+              'MosR3','MosR3_Sake','AsianIslands_MR3','Sake_AsianFerm','NortAmOak','FERussia','AfricanPalmWine',
+               'Taiwanese', 'Taiwan', 'CHNIII', 'Mal19yCHNV', 'CHNI', 'FEAsia', 'CHNIV',]
+group_order = ['Tequila','Tamaulipas','MMMG','SAM2', 'FG',    'Wine12','Wine14', 'Alpechin']
+
+subdata=df467[df467.PhyloGroup_SACE469.isin(group_order)]
+
+sns.boxplot(x='PhyloGroup_SACE469', y='Heterozygosity_y', data=subdata,order=group_order, width=.8, showfliers=False)
+#sns.violinplot(x='PhyloGroup_SACE469', y='Heterozygosity_y', data=subdata,order=group_order, width=1.5, cut=0, inner='stick')
+sns.violinplot(x='PhyloGroup_SACE469', y='Heterozygosity_y', data=subdata,order=group_order, width=1, hue=True, hue_order=[True, False], split=True, cut=0, ax=ax, position=-0.5)
+#sns.boxplot(x='PhyloGroup_SACE469', y='Heterozygosity_y', data=subdata,order=group_order, width=.3)
+sns.stripplot(x='PhyloGroup_SACE469', y='Heterozygosity_y', data=subdata, order=group_order, color='black', edgecolor='black', linewidth=.5, alpha=0.25, jitter=True, dodge=True, size=4)
+#sns.swarmplot(x='PhyloGroup_SACE469', y='Heterozygosity_y', data=subdata,   color='black', alpha=0.5, order=group_order,orient='v')
+
+# Add labels and title
+#plt.xlabel('Group')
+plt.ylabel('Heterozygosity')
+plt.title('Por grupo filogenético')
+plt.xticks(rotation=90)
+plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+## Show the plot
+##plt.show()
+#plt.savefig('Het_PhyloGroups_8favoritos_violinscatterboxplot.pdf')
+
+
+
+
+groups = subdata['PhyloGroup_SACE469'].unique()
+num_groups = len(groups)
+p_values_matrix = np.zeros((num_groups, num_groups))
+
+# Get all combinations of groups
+group_combinations = combinations(groups, 2)
+
+for i, group1 in enumerate(groups):
+    for j, group2 in enumerate(groups):
+        if i < j:
+            data1 = subdata[subdata['PhyloGroup_SACE469'] == group1]['Heterozygosity_y']
+            data2 = subdata[subdata['PhyloGroup_SACE469'] == group2]['Heterozygosity_y']
+            stat, p_value = mannwhitneyu(data1, data2)
+            p_values_matrix[i, j] = p_value
+            p_values_matrix[j, i] = p_value
+
+p_values_df = pd.DataFrame(p_values_matrix, index=groups, columns=groups)
+p_values_df.to_csv('p_values_matrix_MannWhitneyUTest_Heterozigosity.csv.csv')
+
+
+print("Matrix of p-values:")
+print(p_values_df)
+
+plt.figure(figsize=(7, 5.5))
+sns.heatmap(p_values_df, annot=True, cmap='viridis', fmt=".3f")
+plt.title('Mann-Whitney U Test P-Values Matrix Heterozgozity_y')
+plt.xlabel('PhyloGroup_SACE469')
+plt.ylabel('PhyloGroup_SACE469')
+plt.show()
+p_values_matrix.to_csv('p_values_matrix_MannWhitneyUTest_Heterozigosity.csv', index=True)

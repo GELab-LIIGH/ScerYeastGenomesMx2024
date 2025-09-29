@@ -1,0 +1,29 @@
+#### BOXPLOT FIG ARTICULO DE NORTE A SUR AUMENTA LA DIVERSIDAD ####
+file_pattern = "RegionsMainMxAg\\*_Window_results.windowed.pi"
+archivos = glob.glob(file_pattern)
+orden=[3,6,5,1,0,4,7]# Para que sean los favoritos
+n=len(orden)
+#orden = [i for i in range(0, len(archivos) )] # para que sean todos
+sorted_archivos = [archivos[index] for index in orden]
+con = 0
+n = len(sorted_archivos)
+color = iter(cm.rainbow(np.linspace(0, 1, n)))
+fig, ax = plt.subplots(figsize=(3, 3))
+all_data = []
+for file_path in sorted_archivos:
+    con=con+1
+    df = pd.read_csv(file_path, sep='\t')
+    #df = df.rename(columns={'PI','PI_'+sorted_archivos[con][16:28] })
+    #df = df.rename(columns={'old_name_1': 'new_name_1', 'old_name_2': 'new_name_2', ...})
+    data = df.PI
+    all_data.append(data)
+    c = next(color)
+sns.boxplot(data=all_data, ax=ax, showfliers=False,orient='h')
+#sns.violinplot(x='PhyloGroup_SACE469', y='Heterozygosity_y', orient='h',data=subdata,order=group_order, width=1, hue=True, hue_order=[True, False], split=True, cut=0, ax=ax, position=-0.5)
+ax.set_yticks(range(n))
+ax.set_yticklabels( (sorted_archivos[i][16:30] for i in range(n)), rotation=0)
+plt.xlabel('Pi')
+#plt.title('Boxplot for Each Iteration')
+plt.tight_layout()
+# plt.show()
+# plt.savefig('RegionsMainMxAg\\Pi.pdf')

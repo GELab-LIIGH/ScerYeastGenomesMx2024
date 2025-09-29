@@ -1,0 +1,134 @@
+genes_en_Total <- unique(filtered_Intro_df$Gene)
+length(genes_en_Total)
+
+subset_Neotropical1 <- filtered_Intro_df[filtered_Intro_df$Phylogenetic_Clade %in% c("Mexican_Agave_1"), ]
+subset_Neotropical2 <- filtered_Intro_df[filtered_Intro_df$Phylogenetic_Clade %in% c("French Guiana"), ]
+subset_Neotropical3 <- filtered_Intro_df[filtered_Intro_df$Phylogenetic_Clade %in% c("Mexican_Agave_2"), ]
+subset_Neotropical4 <- filtered_Intro_df[filtered_Intro_df$Phylogenetic_Clade %in% c("WB3"), ]
+subset_NeotropicalSAM <- filtered_Intro_df[filtered_Intro_df$Phylogenetic_Clade %in% c("SAM2"), ]
+subset_NeotropicalTD <- filtered_Intro_df[filtered_Intro_df$Phylogenetic_Clade %in% c("Tequila_Distillery"), ]
+subset_NeotropicalAlpechin <- filtered_Intro_df[filtered_Intro_df$Phylogenetic_Clade %in% c("Alpechin"), ]
+
+
+genes_en_MA1 <- unique(subset_Neotropical1$Gene)
+genes_en_FG <- unique(subset_Neotropical2$Gene)
+genes_en_MA2 <- unique(subset_Neotropical3$Gene)
+genes_en_WB3 <- unique(subset_Neotropical4$Gene)
+genes_en_SAM2 <- unique(subset_NeotropicalSAM$Gene)
+genes_en_TD <- unique(subset_NeotropicalTD$Gene)
+genes_en_Alp <- unique(subset_NeotropicalAlpechin$Gene)
+
+
+get_combinations_pvalues <- function(list_of_genes, N_total) {
+  library(utils)
+  library(combinat)
+  
+  # Función para prueba de Fisher exacta
+  fisher_genes <- function(A_size, B_size, k, N) {
+    tabla <- matrix(c(k, A_size - k, B_size - k, N - A_size - B_size + k), nrow = 2, byrow = TRUE)
+    res <- fisher.test(tabla, alternative = "greater")
+    return(res$p.value)
+  }
+  
+  # Función para prueba hipergeométrica extendida
+  hyper_test <- function(shared_set_size, new_group_size, intersection_size, N) {
+    phyper(q = intersection_size - 1, m = shared_set_size, n = N - shared_set_size, k = new_group_size, lower.tail = FALSE)
+  }
+  
+  combos <- list()
+  results <- data.frame()
+  
+  group_names <- names(list_of_genes)
+  
+  for (k in 2:length(group_names)) {
+    cmb <- combn(group_names, k, simplify = FALSE)
+    
+    for (groups in cmb) {
+      sets <- lapply(groups, function(g) list_of_genes[[g]])
+      group_sizes <- sapply(sets, length)
+      intersec_genes <- Reduce(intersect, sets)
+      obs <- length(intersec_genes)
+      
+      if (k == 2) {
+        # Comparaciones pareadas con Fisher
+        pval <- fisher_genes(group_sizes[1], group_sizes[2], obs, N_total)
+        expected <- group_sizes[1] * group_sizes[2] / N_total
+      } else {
+        # Para k >= 3 usamos test hipergeométrico
+        shared_genes <- Reduce(intersect, sets[1:(k-1)])
+        pval <- hyper_test(length(shared_genes), group_sizes[k], obs, N_total)
+        expected <- length(shared_genes) * group_sizes[k] / N_total
+      }
+      
+      results <- rbind(results, data.frame(
+        Combination = paste(groups, collapse = "_"),
+        Observed = obs,
+        Expected = round(expected, 2),
+        p_value = signif(pval, 3)
+      ))
+    }
+  }
+  return(results)
+}
+
+list_of_genes <- list(
+  MA1 = genes_en_MA1,
+  MA2 = genes_en_MA2,
+  FG = genes_en_FG#,
+  #WB3 = genes_en_WB3,
+  #SAM2 = genes_en_SAM2,
+  #TD = genes_en_TD,
+  #ALP = genes_en_Alp
+)
+
+resultados <- get_combinations_pvalues(list_of_genes, N_total = 1205)
+print(resultados)
+
+get_pairwise_gene_overlap_matrix <- function(list_of_genes, N_total) {
+  group_names <- names(list_of_genes)
+  n <- length(group_names)
+  
+  # Crear matriz vacía
+  mat <- matrix("", nrow = n, ncol = n, dimnames = list(group_names, group_names))
+  
+  for (i in 1:n) {
+    for (j in 1:n) {
+      if (i == j) {
+        mat[i, j] <- paste0(length(list_of_genes[[group_names[i]]]), " genes")
+      } else {
+        genes_i <- list_of_genes[[group_names[i]]]
+        genes_j <- list_of_genes[[group_names[j]]]
+        obs <- length(intersect(genes_i, genes_j))
+        expected <- (length(genes_i) * length(genes_j)) / N_total
+        # Fisher test
+        tabla <- matrix(c(
+          obs,
+          length(genes_i) - obs,
+          length(genes_j) - obs,
+          N_total - length(genes_i) - length(genes_j) + obs
+        ), nrow = 2)
+        pval <- fisher.test(tabla, alternative = "greater")$p.value
+        mat[i, j] <- sprintf("%d / %.2f / %.3g", obs, expected, pval)
+      }
+    }
+  }
+  
+  return(as.data.frame(mat))
+}
+
+list_of_genes <- list(
+  MA1 = genes_en_MA1,
+  MA2 = genes_en_MA2,
+  FG = genes_en_FG,
+  WB3 = genes_en_WB3,
+  SAM2 = genes_en_SAM2,
+  TD = genes_en_TD,
+  ALP = genes_en_Alp
+)
+resultado_matriz <- get_pairwise_gene_overlap_matrix(list_of_genes, N_total = 1205)
+print(resultado_matriz)
+
+# Opcional: guardar a CSV
+write.csv(resultado_matriz, "matriz_resultado_overlap.csv")
+
+

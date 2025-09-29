@@ -1,0 +1,105 @@
+plot_ibs_between_clades_matrix <- function(dir_path,
+                                           metadata_csv,
+                                           output_prefix = "IBS_between_clades",
+                                           width = 12,
+                                           height = 10,
+                                           exclude_samples = c(""),
+                                           color_monochrome = FALSE) {
+  if (!requireNamespace("pheatmap", quietly = TRUE)) install.packages("pheatmap")
+  library(pheatmap)
+  
+  if (!grepl("/$", dir_path)) dir_path <- paste0(dir_path, "/")
+  
+  # Leer archivos
+  ids <- read.table(paste0(dir_path, "ibs_matrix.mibs.id"), stringsAsFactors = FALSE)
+  ibs_matrix <- as.matrix(read.table(paste0(dir_path, "ibs_matrix.mibs")))
+  rownames(ibs_matrix) <- ids$V2
+  colnames(ibs_matrix) <- ids$V2
+  
+  # Excluir muestras
+  keep <- !(rownames(ibs_matrix) %in% exclude_samples)
+  ibs_matrix <- ibs_matrix[keep, keep]
+  
+  # Leer metadatos
+  metadatas <- read.csv(metadata_csv, stringsAsFactors = FALSE)
+  metadatas <- metadatas[metadatas$ID %in% rownames(ibs_matrix), ]
+  metadatas <- metadatas[!duplicated(metadatas$ID), ]
+  
+  # Asignar clados a IDs
+  sample_clade <- setNames(metadatas$Phylogenetic_Clade, metadatas$ID)
+  clades <- unique(sample_clade)
+  
+  # Inicializar matrices de media y mediana
+  mean_matrix <- matrix(NA, nrow = length(clades), ncol = length(clades),
+                        dimnames = list(clades, clades))
+  median_matrix <- mean_matrix
+  
+  for (i in clades) {
+    for (j in clades) {
+      ids_i <- names(sample_clade[sample_clade == i])
+      ids_j <- names(sample_clade[sample_clade == j])
+      values <- ibs_matrix[ids_i, ids_j, drop = FALSE]
+      mean_matrix[i, j] <- mean(values, na.rm = TRUE)
+      median_matrix[i, j] <- median(values, na.rm = TRUE)
+    }
+  }
+  
+  # Definir color si se requiere monocromático
+  if (color_monochrome) {
+    color_palette <- colorRampPalette(c("cyan", "black"))(100)
+  } else {
+    color_palette <- NULL  # usar el default
+  }
+  
+  
+  
+  # Paso 1: Graficar con clustering para obtener el orden
+  hm_mean <- pheatmap(mean_matrix,
+                      main = "Clustering temporal (para reordenar)",
+                      silent = TRUE)
+  
+  # Paso 2: Obtener orden y modificarlo
+  original_order <- hm_mean$tree_row$labels[hm_mean$tree_row$order]
+  new_order <- original_order[!original_order %in% c("Tequila_Distillery", "Mexican_Agave_1")]
+  idx_sam2 <- which(new_order == "SAM2")
+  
+  # Insertar después de SAM2
+  new_order <- append(new_order, "Tequila_Distillery", after = idx_sam2)
+  new_order <- append(new_order, "Mexican_Agave_1", after = idx_sam2 + 1)
+  
+  # Paso 3: Reordenar matrices
+  mean_matrix_reordered <- mean_matrix[new_order, new_order]
+  median_matrix_reordered <- median_matrix[new_order, new_order]
+  
+  # Paso 4: Graficar con orden fijo
+  pdf(paste0(dir_path, output_prefix, "_mean.pdf"), width = width, height = height)
+  pheatmap(mean_matrix_reordered,
+           main = "Distancia promedio IBS entre clados",
+           display_numbers = TRUE,
+           cluster_rows = FALSE,
+           cluster_cols = FALSE,
+           color = color_palette)
+  dev.off()
+  
+  pdf(paste0(dir_path, output_prefix, "_median.pdf"), width = width, height = height)
+  pheatmap(median_matrix_reordered,
+           main = "Distancia mediana IBS entre clados",
+           display_numbers = TRUE,
+           cluster_rows = FALSE,
+           cluster_cols = FALSE,
+           color = color_palette)
+  dev.off()
+  
+  
+  cat("✅ Heatmaps guardados en:\n",
+      paste0(dir_path, output_prefix, "_mean.pdf"), "\n",
+      paste0(dir_path, output_prefix, "_median.pdf"), "\n")
+}
+
+plot_ibs_between_clades_matrix(
+  dir_path = ".",
+  metadata_csv = "C:/Users/HP/Dropbox/YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/20241111_NatComm_Submission/SampleSheets/SampleSheet_To_Pick_Randomly.csv",
+  output_prefix = "toCONC_monoch_IBS_clade_distances_SACE489toCONC__",
+  exclude_samples = c("YMX005640", "ERR3010150"),
+  color_monochrome = TRUE
+)

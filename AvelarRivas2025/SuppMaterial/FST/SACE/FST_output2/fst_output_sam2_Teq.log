@@ -1,0 +1,21 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+	--weir-fst-pop Grupos/SAM2_b.txt
+	--weir-fst-pop Grupos/Tequila.txt
+	--keep Grupos/SAM2_b.txt
+	--keep Grupos/Tequila.txt
+	--out FST_output2/fst_output_sam2_Teq
+
+Using zlib version: 1.2.7
+Keeping individuals in 'keep' list
+After filtering, kept 20 out of 489 Individuals
+Outputting Weir and Cockerham Fst estimates.
+	Fst: Only using diploid sites.
+Weir and Cockerham mean Fst estimate: 0.13546
+Weir and Cockerham weighted Fst estimate: 0.19801
+After filtering, kept 1195098 out of a possible 1195098 Sites
+Run Time = 98.00 seconds

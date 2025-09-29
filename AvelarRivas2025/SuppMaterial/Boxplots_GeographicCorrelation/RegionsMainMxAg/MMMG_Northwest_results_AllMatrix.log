@@ -1,0 +1,16 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Matrix_SNPs_SACE_from_CONC_gt.vcf
+	--keep MMMG_Northwest.txt
+	--out MMMG_Northwest_results_AllMatrix
+	--site-pi
+
+Keeping individuals in 'keep' list
+After filtering, kept 25 out of 467 Individuals
+Outputting Per-Site Nucleotide Diversity Statistics...
+	sitePi: Only using fully diploid sites.
+After filtering, kept 1322710 out of a possible 1322710 Sites
+Run Time = 106.00 seconds

@@ -1,0 +1,16 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Matrix_SNPs_SACE_from_CONC_gt.vcf
+	--keep MMMG_WestI.txt
+	--out MMMG_WestI_Window_results_AllMatrix
+	--window-pi 10000
+
+Keeping individuals in 'keep' list
+After filtering, kept 33 out of 467 Individuals
+Outputting Windowed Nucleotide Diversity Statistics...
+	windowPi: Only using fully diploid sites.
+After filtering, kept 1322710 out of a possible 1322710 Sites
+Run Time = 100.00 seconds

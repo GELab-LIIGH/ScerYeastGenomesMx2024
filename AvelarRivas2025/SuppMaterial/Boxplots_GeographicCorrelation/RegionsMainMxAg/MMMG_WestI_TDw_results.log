@@ -1,0 +1,16 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic
+	--keep MMMG_WestI.txt
+	--out MMMG_WestI_TDw_results
+	--TajimaD 10000
+
+Keeping individuals in 'keep' list
+After filtering, kept 33 out of 467 Individuals
+Outputting Tajima's D Statistic...
+	TajimaD: Only using fully diploid sites.
+After filtering, kept 1002285 out of a possible 1002285 Sites
+Run Time = 72.00 seconds

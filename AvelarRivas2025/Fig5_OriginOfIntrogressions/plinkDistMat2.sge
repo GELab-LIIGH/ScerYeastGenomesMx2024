@@ -1,0 +1,59 @@
+#### from /mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_Jun2025_PLINK
+
+#!/bin/bash
+#$ -cwd
+. /etc/profile.d/modules.sh
+#$ -e /mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_Jun2025_PLINK/_$JOB_ID.err
+#$ -o /mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_Jun2025_PLINK/_$JOB_ID.out
+#$ -S /bin/bash
+#$ -N PLINK_DIST
+#$ -l vf=8G
+#$ -pe openmp 1
+#$ -m e
+source /etc/bashrc
+#$ -M jabrahamavelar@gmail.com
+
+module load plink2/2.0.0-a.6.9LM
+module load plink/1.9
+
+cd /mnt/Timina/lmorales/isedeno/introgression_origin/wblocks/data/vcfs/
+genes=$(ls -d */)
+genes_array=($genes)
+
+outdir=/mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_Jun2025_PLINK
+mkdir -p "$outdir"
+
+for ((i=0; i<${#genes_array[@]}; i++)); do
+  echo "Processing directory: ${genes_array[$i]}"
+  dir=${genes_array[$i]%/}
+  gen="$dir"
+  vcf_file="$gen/Matrix_${gen}_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40_biallelic.vcf"
+
+  if [ -f "$vcf_file" ]; then
+    echo "Found VCF: $vcf_file"
+    tmp_prefix="$outdir/tmp_$gen"
+
+    # Convert VCF to PLINK2 binary format with correct sample IDs
+    plink2 --vcf "$vcf_file" --double-id --make-bed --out "$tmp_prefix"
+
+    # Compute IBS distance matrix with PLINK 1.9
+    plink --bfile "$tmp_prefix" --distance square ibs --out "$tmp_prefix" --allow-extra-chr
+
+    # Get sample names from .fam file
+    ids=($(cut -d' ' -f2 ${tmp_prefix}.fam))
+
+    # Generate pairwise distance CSV
+    awk -v OFS="," 'NR==FNR{a[NR]=$1; next} {
+      for(i=1;i<=NF;i++) {
+        if(i>FNR) print a[FNR], a[i], $i
+      }
+    }' <(cut -d' ' -f2 ${tmp_prefix}.fam) ${tmp_prefix}.mibs \
+    > "$outdir/paired_distances_sapa_PLINK_${gen}.csv"
+
+    # Clean up temp files
+    rm "$tmp_prefix".*
+  else
+    echo "VCF not found for $gen"
+  fi
+
+done

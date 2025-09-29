@@ -1,0 +1,27 @@
+#!/bin/bash
+## Use current working directory (change working directory)
+#$ -cwd
+. /etc/profile.d/modules.sh
+##Error file
+#$ -e /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/st/IQTREE_Trees_SACE333_CONC_$JOB_ID.err
+## Out file
+#$ -o /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/st/IQTREE_Trees_SACE333_CONC_$JOB_ID.out
+#$ -S /bin/bash
+## Job's name
+#$ -N Iqt_317CONC
+#$ -q all.q@compute-00-10
+#$ -l vf=8G
+#$ -pe openmp 4
+#$ -m e
+source /etc/bashrc
+## notification
+#$ -M jabrahamavelar@gmail.com
+## Modules
+module load iq-tree/2.3.6 python37/3.7.0
+#gcc/5.1.0 python37/3.7.0 vcftools/0.1.14 htslib/1.9 bcftools/1.9 phyml/3.1 jmodeltest/2.1.10 raxml/8.2.12-avx2-pthreads
+
+
+#python3.7  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping/vcf2phylip.py -i /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE_ToNCm/SACE333_gr85/toCONC/Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic -o /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE_ToNCm/SACE333_gr85/toCONC/Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic/Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic.phy
+
+iqtree2 -s /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE_ToNCm/SACE333_gr85/toCONC/ASC/Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic.phy.varsites.phy -m TVMe+R2+ASC -T AUTO  -bb 1000 -alrt 1000
+

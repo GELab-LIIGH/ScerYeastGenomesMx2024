@@ -1,0 +1,36 @@
+#!/bin/bash
+## Use current working directory (change working directory)
+#$ -cwd
+. /etc/profile.d/modules.sh
+##Error file
+#$ -e /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/_$JOB_ID.err
+## Out file
+#$ -o /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/_$JOB_ID.out
+#$ -S /bin/bash
+## Job's name
+#$ -N ADMIXTURE_Mezcal
+#$ -l vf=12G
+#$ -pe openmp 4
+#$ -m e
+source /etc/bashrc
+## notification
+#$ -M jabrahamavelar@gmail.com
+## Modules
+module load vcftools/0.1.14 admixture/1.3.0 plink/1.9
+## Remove prefix form chromosome numbers at chromosome names
+cp $1 Matrix.vcf # copy the vcf before changing chromosome names
+ChrNames=$(grep -v "#" Matrix.vcf |head -n1 | cut -f1)
+n=${#ChrNames}
+Chr0=${ChrNames:0:$n-1}
+Chr=${ChrNames:0:$n-2}
+echo "ChrNames_ToReplace $(grep -c $ChrNames Matrix.vcf)"
+sed -i "s/${Chr0}//g" Matrix.vcf
+sed -i "s/${Chr}//g" Matrix.vcf
+echo "ChrNames_Remaining $(grep -c $ChrNames Matrix.vcf)"
+# generar .bed y .fam del vcf sin LD
+vcftools --vcf Matrix.vcf --plink --out Matrix # generate .ped .map and .log.
+plink --file Matrix --out Matrix # .log .bed .bim .fam
+plink --bfile Matrix --indep-pairwise $2 $3 $4 --out Matrix # SNP_window500 advancing_10SNPs_each_Time r2_greater_than.3 # Outputs: .nosex .log .prune.out .prune.in
+plink --bfile Matrix --extract Matrix.prune.in --make-bed --out Matrix_LDPrune_${2}_${3}_${4} # Matrix_LDPrune.log .bim .fam .bed .nosex
+
+
