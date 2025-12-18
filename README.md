@@ -1,5 +1,6 @@
 # **ScerYeastGenomesMx2024**
 
+[![DOI](https://zenodo.org/badge/862035526.svg)](https://doi.org/10.5281/zenodo.17970284) 
 Recurrent introgression and geographical stratification shape Saccharomyces cerevisiae in the Neotropics  
 **doi:** https://doi.org/10.1101/2024.09.27.615306
 
