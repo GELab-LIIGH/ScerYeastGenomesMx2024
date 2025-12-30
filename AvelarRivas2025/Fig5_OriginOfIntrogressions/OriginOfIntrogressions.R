@@ -237,3 +237,86 @@ ggplot(stats_df_filtered , aes(x = ClosestCladeSimilarity, y = Average)) +
         axis.text.x = element_text(angle = 45, hjust = 1))
 dev.off()
 
+
+##### For the final revision  ########
+library(dplyr)
+library(ggplot2)
+
+facet_order_Names <- c("MA1", "MA2", "TeqD", "SAM2", "FG", "WB3")
+names(facet_order_Names) <- c("Mexican_Agave_1",
+                              "Mexican_Agave_2",
+                              "Tequila_Distillery",
+                              "SAM2",
+                              "French Guiana",
+                              "WB3")
+
+ordered_origins       <- c("SpB_Mx", "SpB_Dgo", "SpB_NE", "SpB_All", "SpB_Brasil")
+ordered_origins_Names <- c("SpB_MxAg", "SpB_Mx2", "SpB_Mx1", "SpB", "SpB_Bra")
+names(ordered_origins_Names) <- ordered_origins
+
+
+# Datos crudos filtrados (sin NA y solo esos 5 origins)
+tabla_larga_filtrada <- tabla_larga %>%
+  filter(
+    Phylogenetic_Clade %in% names(facet_order_Names),  # <-- solo los clados que quieres
+    !is.na(Phylogenetic_Clade),
+    !is.na(ClosestCladeSimilarity),
+    ClosestCladeSimilarity %in% ordered_origins
+  ) %>%
+  mutate(
+    Phylogenetic_Clade     = factor(Phylogenetic_Clade, levels = facet_order),
+    ClosestCladeSimilarity = factor(ClosestCladeSimilarity,
+                                    levels = rev(ordered_origins))
+  ) %>%
+  droplevels()
+
+# Resumen (media, SD y N)
+stats_df <- tabla_larga_filtrada %>%
+  group_by(ClosestCladeSimilarity, Phylogenetic_Clade) %>%
+  summarise(
+    Average = mean(Count, na.rm = TRUE),
+    StdDev  = sd(Count, na.rm = TRUE),
+    N       = sum(!is.na(Count)),
+    .groups = "drop"
+  ) %>%
+  droplevels()
+
+# n por clado para los títulos de los facets
+n_by_clade <- tabla_larga_filtrada %>%
+  group_by(Phylogenetic_Clade) %>%
+  summarise(N_clade = n_distinct(Strain), .groups = "drop")
+
+# nombres cortos para los facets
+facet_order_Names <- c("MA1", "MA2", "TeqD", "SAM2", "FG", "WB3")
+names(facet_order_Names) <- c("Mexican_Agave_1", "Mexican_Agave_2", "Tequila_Distillery", "SAM2", "French Guiana", "WB3")
+
+facet_labels <- setNames(
+  paste0(facet_order_Names[n_by_clade$Phylogenetic_Clade], " (n=", n_by_clade$N_clade, ")"),
+  n_by_clade$Phylogenetic_Clade
+)
+
+ordered_origins_Names <- c("SpB_MxAg", "SpB_Mx2", "SpB_Mx1", "SpB", "SpB_Bra")
+names(ordered_origins_Names) <- ordered_origins
+
+max_xlim <- 280
+
+pdf("Fig5a_BarsAndPlots_b.pdf", 88/25.4, 80/25.4 )
+ggplot() +
+  geom_col(data = stats_df, aes(x = Average, y = ClosestCladeSimilarity),
+           fill  = "grey50", width = 0.7) +
+  geom_errorbar(data = stats_df,
+                aes(xmin = Average - StdDev, xmax = Average + StdDev, y = ClosestCladeSimilarity),
+                width = 0.2) +
+  geom_jitter(data = tabla_larga_filtrada,
+              aes(x = Count, y = ClosestCladeSimilarity),
+              height = 0.15, alpha  = 0.2, size   = 1) +
+  facet_wrap(~ Phylogenetic_Clade,
+             ncol = 7, scales = "fixed", labeller = as_labeller(facet_labels)) +
+  scale_y_discrete(labels = ordered_origins_Names) +
+  coord_cartesian(xlim = c(0, max_xlim)) +
+  labs(x = "Introgressed genes per strain (mean ± SD)",
+       y = "Origin") +
+  theme_minimal() +
+  theme(legend.position = "none", axis.text.y = element_text(size = 8))
+dev.off()
+
